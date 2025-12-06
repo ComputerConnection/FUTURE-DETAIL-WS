@@ -39,7 +39,7 @@ const benefits = [
   { title: 'UV Stability', description: 'Non-yellowing film maintains optical clarity for years. Your Tesla stays looking factory-fresh.', icon: '☀️' },
   { title: 'Rock Chip Protection', description: 'Absorbs impacts from road debris, preventing chips and cracks in your factory paint.', icon: '🛡️' },
   { title: 'Chemical Resistance', description: 'Protects against bird droppings, tree sap, bug splatter, and harsh cleaning chemicals.', icon: '🧪' },
-  { title: 'Invisible Protection', description: 'Optically clear film is virtually invisible. Nobody knows it's there until you tell them.', icon: '👁️' },
+  { title: 'Invisible Protection', description: 'Optically clear film is virtually invisible. Nobody knows it is there until you tell them.', icon: '👁️' },
   { title: '10-Year Warranty', description: 'Manufacturer-backed warranty covers yellowing, cracking, peeling, and delamination.', icon: '📋' },
 ];
 
