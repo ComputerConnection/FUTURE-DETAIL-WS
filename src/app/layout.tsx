@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import AnimatedNavbar from '@/components/AnimatedNavbar';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'FUTURE DETAIL | Tesla PPF, Wraps & Ceramic Coatings | Edmond & OKC',
-  description: 'Premium Paint Protection Film, color-change wraps, window tinting, and ceramic coatings for Tesla vehicles in Edmond and Oklahoma City. (405) 315-9202',
+  title: 'FUTURE DETAIL | Tesla PPF, Wraps, Tint & Ceramic Coatings | Edmond & OKC',
+  description: 'Premium Paint Protection Film, color-change wraps, LLumar window tinting, and ceramic coatings for Tesla vehicles in Edmond and Oklahoma City. Call (405) 315-9202.',
+  keywords: 'Tesla PPF, Tesla wrap, Tesla tint, ceramic coating, Edmond OK, Oklahoma City, Model 3, Model Y, Model S, Model X, Cybertruck, LLumar',
 };
 
 export default function RootLayout({
@@ -13,32 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white">
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
-          <div className="container-wide flex items-center justify-between h-16">
-            <a href="/" className="text-xl font-light">
-              FUTURE<span className="font-semibold">DETAIL</span>
-            </a>
-            <div className="hidden md:flex items-center gap-6 text-sm">
-              <a href="/ppf" className="hover:text-cyan-400 transition-colors">PPF</a>
-              <a href="/wraps" className="hover:text-cyan-400 transition-colors">Wraps</a>
-              <a href="/tint" className="hover:text-cyan-400 transition-colors">Tint</a>
-              <a href="/coatings" className="hover:text-cyan-400 transition-colors">Coatings</a>
-              <a href="/pricing" className="hover:text-cyan-400 transition-colors">Pricing</a>
-              <a href="/gallery" className="hover:text-cyan-400 transition-colors">Gallery</a>
-              <a href="/contact" className="px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">Book Now</a>
-            </div>
-          </div>
-        </nav>
-        <main className="pt-16">{children}</main>
-        <footer className="bg-black border-t border-white/10 py-12">
-          <div className="container-wide text-center text-gray-500 text-sm">
-            <p>© {new Date().getFullYear()} FUTURE DETAIL. All rights reserved.</p>
-            <p className="mt-2">11734 Maui Lane, Edmond, OK · (405) 315-9202</p>
-          </div>
-        </footer>
+      <body className="bg-black text-white antialiased">
+        <AnimatedNavbar />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
 }
-
