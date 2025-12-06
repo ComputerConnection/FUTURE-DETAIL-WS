@@ -46,6 +46,18 @@ export default function Footer() {
               <li><Link href="/wraps" className="text-sm text-gray-400 hover:text-white transition-colors">Color Change Wraps</Link></li>
               <li><Link href="/tint" className="text-sm text-gray-400 hover:text-white transition-colors">Window Tinting</Link></li>
               <li><Link href="/coatings" className="text-sm text-gray-400 hover:text-white transition-colors">Ceramic Coatings</Link></li>
+              <li><Link href="/pricing" className="text-sm text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-xs font-medium uppercase tracking-wider mb-6 text-gray-500">Company</h4>
+            <ul className="space-y-3">
+              <li><Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/gallery" className="text-sm text-gray-400 hover:text-white transition-colors">Gallery</Link></li>
+              <li><Link href="/faq" className="text-sm text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 

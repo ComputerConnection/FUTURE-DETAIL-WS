@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
   { href: '/ppf', label: 'PPF' },
   { href: '/wraps', label: 'Wraps' },
   { href: '/tint', label: 'Tint' },
   { href: '/coatings', label: 'Coatings' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about', label: 'About' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function AnimatedNavbar() {
