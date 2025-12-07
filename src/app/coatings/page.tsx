@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import MaintenanceTimeline from '@/components/MaintenanceTimeline';
+import CoatingComparison from '@/components/CoatingComparison';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export const metadata: Metadata = {
   title: 'Ceramic Coating | FUTURE DETAIL | Oklahoma City',
@@ -145,12 +148,23 @@ export default function CoatingsPage() {
                 ))}
               </div>
             </div>
-            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-white/5 flex items-center justify-center">
-              <span className="text-gray-700">Water Beading on Ceramic Coated Surface</span>
+            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-white/5 flex items-center justify-center relative overflow-hidden">
+              {/* Water beading animation placeholder */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400/30 to-emerald-400/30 animate-pulse" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400/50 to-emerald-400/50" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl">💧</div>
+                </div>
+              </div>
+              <span className="absolute bottom-4 text-gray-600 text-sm">Water Beading Demo</span>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Coating vs Wax Comparison */}
+      <CoatingComparison />
 
       {/* Benefits */}
       <section className="py-24 bg-gradient-to-b from-black to-gray-950">
@@ -177,6 +191,9 @@ export default function CoatingsPage() {
           </div>
         </div>
       </section>
+
+      {/* Maintenance Timeline */}
+      <MaintenanceTimeline />
 
       {/* Application Areas */}
       <section className="py-24">
@@ -226,7 +243,7 @@ export default function CoatingsPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=coating-${pkg.name.toLowerCase().replace(/\s+/g, '-')}`}
                   className={`block text-center py-3 rounded-full font-medium transition-colors ${
                     pkg.popular 
                       ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-black hover:opacity-90' 
@@ -249,18 +266,18 @@ export default function CoatingsPage() {
             <p className="text-gray-500">See how ceramic coating transforms your Tesla</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="aspect-video rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-white/5 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-gray-600 text-sm mb-2">Before</p>
-                <p className="text-gray-700">Water sits flat on surface</p>
-              </div>
-            </div>
-            <div className="aspect-video rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-emerald-400 text-sm mb-2">After</p>
-                <p className="text-gray-500">Water beads and rolls off</p>
-              </div>
-            </div>
+            <BeforeAfterSlider 
+              beforeLabel="Before Coating"
+              afterLabel="After Coating"
+              beforeContent="Water sits flat on surface"
+              afterContent="Water beads and rolls off"
+            />
+            <BeforeAfterSlider 
+              beforeLabel="Swirl Marks"
+              afterLabel="Corrected & Coated"
+              beforeContent="Visible swirls and scratches"
+              afterContent="Mirror-like finish"
+            />
           </div>
         </div>
       </section>

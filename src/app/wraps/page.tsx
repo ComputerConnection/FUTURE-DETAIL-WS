@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import TeslaVisualizer from '@/components/TeslaVisualizer';
+import WrapCareGuide from '@/components/WrapCareGuide';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export const metadata: Metadata = {
   title: 'Color Change Wraps | FUTURE DETAIL | Oklahoma City',
@@ -46,6 +49,12 @@ const popularColors = [
   { name: 'Frozen Bronze', hex: '#CD7F32' },
 ];
 
+const transformations = [
+  { before: 'Pearl White', after: 'Nardo Gray', beforeHex: '#F2F2F2', afterHex: '#6B6B6B' },
+  { before: 'Solid Black', after: 'Miami Blue', beforeHex: '#1A1A1A', afterHex: '#00CED1' },
+  { before: 'Midnight Silver', after: 'Racing Red', beforeHex: '#4A4A4A', afterHex: '#C41E3A' },
+];
+
 const benefits = [
   { title: 'Protect Your Paint', description: 'Wrap acts as a protective layer, shielding your factory paint from UV rays, minor scratches, and road debris.', icon: '🛡️' },
   { title: 'Fully Reversible', description: 'Change your mind? Remove the wrap to reveal pristine factory paint underneath. Perfect for leased vehicles.', icon: '↩️' },
@@ -87,6 +96,40 @@ export default function WrapsPage() {
         </div>
       </section>
 
+      {/* Tesla Visualizer */}
+      <TeslaVisualizer />
+
+      {/* Featured Transformations */}
+      <section className="py-24 border-t border-white/5">
+        <div className="container-wide">
+          <div className="text-center mb-12">
+            <p className="text-purple-400 text-sm font-medium uppercase tracking-widest mb-4">Transformations</p>
+            <h2 className="text-3xl font-extralight mb-4">Popular Color Changes</h2>
+            <p className="text-gray-500">See how a wrap completely transforms your Tesla</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {transformations.map((t, index) => (
+              <div key={index} className="rounded-2xl overflow-hidden border border-white/10">
+                <div className="aspect-[4/3] relative">
+                  <div className="absolute inset-0 flex">
+                    <div className="w-1/2 flex items-center justify-center" style={{ backgroundColor: t.beforeHex }}>
+                      <span className="text-xs text-white/70 bg-black/30 px-2 py-1 rounded">{t.before}</span>
+                    </div>
+                    <div className="w-1/2 flex items-center justify-center" style={{ backgroundColor: t.afterHex }}>
+                      <span className="text-xs text-white/70 bg-black/30 px-2 py-1 rounded">{t.after}</span>
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-purple-500" />
+                </div>
+                <div className="p-4 text-center">
+                  <p className="text-sm text-gray-400">{t.before} → <span className="text-purple-400">{t.after}</span></p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Finishes */}
       <section className="py-24 border-t border-white/5">
         <div className="container-wide">
@@ -120,7 +163,7 @@ export default function WrapsPage() {
             {popularColors.map((color) => (
               <div key={color.name} className="text-center group">
                 <div 
-                  className="aspect-square rounded-2xl mb-3 border border-white/10 group-hover:border-purple-500/50 transition-colors"
+                  className="aspect-square rounded-2xl mb-3 border border-white/10 group-hover:border-purple-500/50 transition-colors group-hover:scale-105"
                   style={{ backgroundColor: color.hex }}
                 />
                 <p className="text-sm text-gray-400">{color.name}</p>
@@ -137,6 +180,9 @@ export default function WrapsPage() {
           </div>
         </div>
       </section>
+
+      {/* Wrap Care Guide */}
+      <WrapCareGuide />
 
       {/* Benefits */}
       <section className="py-24">
@@ -184,7 +230,7 @@ export default function WrapsPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=wrap-${pkg.name.toLowerCase().replace(' ', '-')}`}
                   className={`block text-center py-3 rounded-full font-medium transition-colors ${
                     pkg.popular 
                       ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90' 
@@ -212,7 +258,7 @@ export default function WrapsPage() {
               { step: '02', title: 'Preparation', desc: 'Deep clean and paint decontamination' },
               { step: '03', title: 'Installation', desc: '3-5 days of meticulous hand-fitted application' },
               { step: '04', title: 'Quality Check', desc: 'Final inspection and care instructions' },
-            ].map((item, index) => (
+            ].map((item) => (
               <div key={item.step} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-purple-500/30 bg-purple-500/10 mb-4">
                   <span className="text-2xl font-extralight text-purple-400">{item.step}</span>

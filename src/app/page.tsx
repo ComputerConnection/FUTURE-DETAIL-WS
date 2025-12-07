@@ -5,6 +5,8 @@ import AnimatedServiceCard from '@/components/AnimatedServiceCard';
 import TrustBadges from '@/components/TrustBadges';
 import Testimonials from '@/components/Testimonials';
 import ProcessTimeline from '@/components/ProcessTimeline';
+import WhyChooseUs from '@/components/WhyChooseUs';
+import ProjectCarousel from '@/components/ProjectCarousel';
 
 const services = [
   {
@@ -89,12 +91,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Why Choose Us */}
+      <WhyChooseUs />
+
       {/* PPF Feature */}
       <section className="py-24 bg-gradient-to-b from-black to-gray-950">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="aspect-[4/3] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center border border-white/5">
+            <div className="aspect-[4/3] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center border border-white/5 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <span className="text-gray-700">Tesla Model Y Stealth PPF</span>
+              {/* Video placeholder indicator */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform">
+                  <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
             </div>
             <div>
               <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Paint Protection Film</p>
@@ -126,6 +140,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Recent Projects */}
+      <ProjectCarousel />
 
       {/* Process */}
       <ProcessTimeline />

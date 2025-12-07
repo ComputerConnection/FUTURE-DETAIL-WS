@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import GalleryLightbox from '@/components/GalleryLightbox';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export const metadata: Metadata = {
   title: 'Gallery | Our Work | FUTURE DETAIL',
@@ -22,12 +24,6 @@ const projects = [
 ];
 
 const categories = ['All', 'PPF', 'Wrap', 'Tint', 'Coating'];
-
-const beforeAfter = [
-  { title: 'Stealth PPF Transformation', before: 'Gloss White', after: 'Matte White' },
-  { title: 'Color Change Wrap', before: 'Factory Black', after: 'Nardo Gray' },
-  { title: 'Ceramic Coating Results', before: 'Swirl Marks', after: 'Mirror Finish' },
-];
 
 export default function GalleryPage() {
   return (
@@ -58,93 +54,31 @@ export default function GalleryPage() {
             <p className="text-gray-500">Drag to compare the transformation</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {beforeAfter.map((item, index) => (
-              <div key={index} className="rounded-2xl overflow-hidden border border-white/10">
-                <div className="aspect-[4/3] relative bg-gradient-to-br from-gray-800 to-gray-900">
-                  {/* Simulated before/after slider */}
-                  <div className="absolute inset-0 flex">
-                    <div className="w-1/2 bg-gray-800 flex items-center justify-center border-r border-cyan-500">
-                      <span className="text-gray-600 text-sm">{item.before}</span>
-                    </div>
-                    <div className="w-1/2 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 flex items-center justify-center">
-                      <span className="text-gray-500 text-sm">{item.after}</span>
-                    </div>
-                  </div>
-                  {/* Slider handle */}
-                  <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-cyan-500 transform -translate-x-1/2">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-light">{item.title}</h3>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <BeforeAfterSlider 
+              beforeLabel="Before"
+              afterLabel="After"
+              beforeContent="Gloss White"
+              afterContent="Stealth Matte"
+            />
+            <BeforeAfterSlider 
+              beforeLabel="Before"
+              afterLabel="After"
+              beforeContent="Factory Black"
+              afterContent="Nardo Gray"
+            />
+            <BeforeAfterSlider 
+              beforeLabel="Before"
+              afterLabel="After"
+              beforeContent="Swirl Marks"
+              afterContent="Mirror Finish"
+            />
           </div>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-8 border-t border-white/5 sticky top-20 bg-black/90 backdrop-blur-xl z-10">
-        <div className="container-wide">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                  category === 'All'
-                    ? 'bg-cyan-500 text-black'
-                    : 'bg-white/5 text-gray-400 hover:bg-white/10'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Grid */}
-      <section className="py-16">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/30 transition-colors"
-              >
-                {/* Placeholder image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 group-hover:scale-105 transition-transform duration-500">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-gray-700 text-sm">{project.title}</span>
-                  </div>
-                </div>
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      project.category === 'PPF' ? 'bg-cyan-500/20 text-cyan-400' :
-                      project.category === 'Wrap' ? 'bg-purple-500/20 text-purple-400' :
-                      project.category === 'Tint' ? 'bg-amber-500/20 text-amber-400' :
-                      'bg-emerald-500/20 text-emerald-400'
-                    }`}>
-                      {project.category}
-                    </span>
-                    <h3 className="text-lg font-light mt-2">{project.title}</h3>
-                    <p className="text-sm text-gray-400">{project.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Gallery with Filter and Lightbox */}
+      <GalleryLightbox projects={projects} categories={categories} />
 
       {/* Instagram CTA */}
       <section className="py-24 bg-gradient-to-t from-gray-950 to-black border-t border-white/5">

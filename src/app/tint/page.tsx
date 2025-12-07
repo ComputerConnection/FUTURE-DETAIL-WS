@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import ShadeSimulator from '@/components/ShadeSimulator';
+import HeatDemo from '@/components/HeatDemo';
 
 export const metadata: Metadata = {
   title: 'Window Tint | LLumar Ceramic IRX | FUTURE DETAIL | Oklahoma City',
@@ -10,14 +12,6 @@ const specs = [
   { value: '98%', label: 'IR Rejection', description: 'Infrared heat blocked' },
   { value: '99%', label: 'UV Block', description: 'Harmful rays rejected' },
   { value: '60%', label: 'Heat Reduction', description: 'Interior temp drop' },
-];
-
-const tintLevels = [
-  { name: '70%', description: 'Nearly clear, maximum heat rejection', legal: 'Legal all windows' },
-  { name: '50%', description: 'Light tint, excellent visibility', legal: 'Legal most states' },
-  { name: '35%', description: 'Medium tint, great balance', legal: 'Check local laws', popular: true },
-  { name: '20%', description: 'Dark tint, enhanced privacy', legal: 'Rear windows only*' },
-  { name: '5%', description: 'Limo dark, maximum privacy', legal: 'Rear windows only*' },
 ];
 
 const packages = [
@@ -106,6 +100,49 @@ export default function TintPage() {
         </div>
       </section>
 
+      {/* Shade Simulator */}
+      <ShadeSimulator />
+
+      {/* Heat Demo */}
+      <HeatDemo />
+
+      {/* Oklahoma Legal Info */}
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto">
+            <div className="p-8 rounded-2xl border border-amber-500/30 bg-amber-500/5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-light mb-3 text-amber-400">Oklahoma Tint Laws</h3>
+                  <div className="space-y-4 text-gray-400 text-sm">
+                    <p>
+                      <strong className="text-white">Front Side Windows:</strong> Must allow more than 25% of light through (VLT). 
+                      We recommend 35% or lighter for front doors to stay compliant.
+                    </p>
+                    <p>
+                      <strong className="text-white">Back Side & Rear Windows:</strong> Any darkness level is legal. 
+                      You can go as dark as 5% (limo) on rear windows.
+                    </p>
+                    <p>
+                      <strong className="text-white">Windshield:</strong> Non-reflective tint is allowed on the top 5 inches, 
+                      or to the AS-1 line. Clear ceramic for heat rejection is popular and legal.
+                    </p>
+                    <p className="text-amber-400">
+                      We&apos;ll help you choose a legal setup that maximizes heat rejection and privacy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why LLumar */}
       <section className="py-24">
         <div className="container-wide">
@@ -143,36 +180,8 @@ export default function TintPage() {
         </div>
       </section>
 
-      {/* Shade Options */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
-        <div className="container-wide">
-          <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4">Shade Options</p>
-            <h2 className="text-3xl md:text-4xl font-extralight mb-4">Choose Your Darkness</h2>
-            <p className="text-gray-500">From nearly invisible heat rejection to full privacy. All shades available in LLumar Ceramic IRX.</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {tintLevels.map((level) => (
-              <div key={level.name} className={`p-6 rounded-2xl border text-center ${level.popular ? 'border-amber-500 bg-amber-500/5' : 'border-white/10'}`}>
-                {level.popular && <span className="text-amber-400 text-xs font-medium">Popular</span>}
-                <div 
-                  className="w-16 h-16 mx-auto rounded-full mb-4 border border-white/20"
-                  style={{ background: `rgba(0, 0, 0, ${1 - parseInt(level.name) / 100})` }}
-                />
-                <h3 className="text-2xl font-light mb-1">{level.name}</h3>
-                <p className="text-gray-500 text-xs mb-2">{level.description}</p>
-                <p className="text-amber-400/70 text-xs">{level.legal}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-gray-600 text-xs mt-8">
-            * Oklahoma allows any tint on rear windows. Front side windows must allow 25%+ light transmission.
-          </p>
-        </div>
-      </section>
-
       {/* Benefits */}
-      <section className="py-24">
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
         <div className="container-wide">
           <div className="text-center mb-16">
             <p className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4">Benefits</p>
@@ -192,7 +201,7 @@ export default function TintPage() {
       </section>
 
       {/* Packages */}
-      <section id="pricing" className="py-24 bg-gradient-to-t from-gray-950 to-black">
+      <section id="pricing" className="py-24">
         <div className="container-wide">
           <div className="text-center mb-16">
             <p className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4">Packages</p>
@@ -217,7 +226,7 @@ export default function TintPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=tint-${pkg.name.toLowerCase().replace(' ', '-')}`}
                   className={`block text-center py-3 rounded-full font-medium transition-colors ${
                     pkg.popular 
                       ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:opacity-90' 
@@ -233,7 +242,7 @@ export default function TintPage() {
       </section>
 
       {/* Model Pricing Table */}
-      <section className="py-24">
+      <section className="py-24 bg-gradient-to-t from-gray-950 to-black">
         <div className="container-wide">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-extralight mb-4">Pricing by Model</h2>
@@ -268,7 +277,7 @@ export default function TintPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-t from-black to-gray-950 border-t border-white/5">
+      <section className="py-24 border-t border-white/5">
         <div className="container-wide text-center">
           <h2 className="text-4xl font-extralight mb-6">
             Ready to{' '}

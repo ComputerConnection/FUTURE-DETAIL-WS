@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import CoverageDiagram from '@/components/CoverageDiagram';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
+import SelfHealingDemo from '@/components/SelfHealingDemo';
 
 export const metadata: Metadata = {
   title: 'Paint Protection Film (PPF) | FUTURE DETAIL | Oklahoma City',
@@ -72,6 +75,34 @@ export default function PPFPage() {
         </div>
       </section>
 
+      {/* Interactive Coverage Diagram */}
+      <CoverageDiagram />
+
+      {/* Before/After Section */}
+      <section className="py-24 border-t border-white/5">
+        <div className="container-wide">
+          <div className="text-center mb-12">
+            <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">See the Difference</p>
+            <h2 className="text-3xl font-extralight mb-4">Before & After PPF</h2>
+            <p className="text-gray-500">Drag to see how PPF protects against rock chips and scratches</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <BeforeAfterSlider 
+              beforeLabel="Without PPF"
+              afterLabel="With PPF"
+              beforeContent="Rock chip damage visible"
+              afterContent="Paint protected"
+            />
+            <BeforeAfterSlider 
+              beforeLabel="Gloss"
+              afterLabel="Stealth"
+              beforeContent="Factory gloss finish"
+              afterContent="Matte stealth finish"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Finishes */}
       <section className="py-24 border-t border-white/5">
         <div className="container-wide">
@@ -98,8 +129,11 @@ export default function PPFPage() {
         </div>
       </section>
 
+      {/* Self-Healing Demo */}
+      <SelfHealingDemo />
+
       {/* Benefits */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
+      <section className="py-24">
         <div className="container-wide">
           <div className="text-center mb-16">
             <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Why PPF?</p>
@@ -118,7 +152,7 @@ export default function PPFPage() {
       </section>
 
       {/* Packages */}
-      <section id="packages" className="py-24">
+      <section id="packages" className="py-24 bg-gradient-to-t from-gray-950 to-black">
         <div className="container-wide">
           <div className="text-center mb-16">
             <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Packages</p>
@@ -148,7 +182,7 @@ export default function PPFPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=ppf-${pkg.name.toLowerCase().replace(' ', '-')}`}
                   className={`block text-center py-3 rounded-full font-medium transition-colors ${
                     pkg.popular 
                       ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:opacity-90' 
@@ -164,7 +198,7 @@ export default function PPFPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-t from-black to-gray-950 border-t border-white/5">
+      <section className="py-24 border-t border-white/5">
         <div className="container-wide text-center">
           <h2 className="text-4xl font-extralight mb-6">
             Protect Your{' '}

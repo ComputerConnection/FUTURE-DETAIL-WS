@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import Financing from '@/components/Financing';
 import Referral from '@/components/Referral';
+import PackageCalculator from '@/components/PackageCalculator';
 
 export const metadata: Metadata = {
   title: 'Pricing | Tesla PPF, Wraps, Tint & Coating Packages | FUTURE DETAIL',
@@ -72,6 +73,27 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Price Match Guarantee */}
+      <section className="py-8">
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto p-6 rounded-2xl border border-cyan-500/30 bg-cyan-500/5 text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="text-lg font-medium text-cyan-400">Price Match Guarantee</span>
+            </div>
+            <p className="text-gray-400 text-sm">
+              Got a quote from another shop? We&apos;ll match any comparable quote using the same premium materials. 
+              Bring your written estimate and we&apos;ll honor it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Package Calculator */}
+      <PackageCalculator />
+
       {/* PPF Pricing */}
       <section className="py-24 border-t border-white/5">
         <div className="container-wide">
@@ -94,6 +116,7 @@ export default function PricingPage() {
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Track Package</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full Body</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Stealth Add</th>
+                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500"></th>
                 </tr>
               </thead>
               <tbody>
@@ -104,6 +127,14 @@ export default function PricingPage() {
                     <td className="py-4 px-4 text-center text-cyan-400 font-medium">{row.track}</td>
                     <td className="py-4 px-4 text-center text-gray-400">{row.fullBody}</td>
                     <td className="py-4 px-4 text-center text-gray-500 text-sm">{row.stealthAdd}</td>
+                    <td className="py-4 px-4 text-center">
+                      <Link 
+                        href={`/contact?service=ppf&model=${encodeURIComponent(row.model)}`}
+                        className="text-xs text-cyan-400 hover:underline"
+                      >
+                        Book →
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -139,6 +170,7 @@ export default function PricingPage() {
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Partial Wrap</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full Color Change</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Stealth Conversion</th>
+                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500"></th>
                 </tr>
               </thead>
               <tbody>
@@ -148,6 +180,14 @@ export default function PricingPage() {
                     <td className="py-4 px-4 text-center text-gray-400">{row.partial}</td>
                     <td className="py-4 px-4 text-center text-purple-400 font-medium">{row.fullColor}</td>
                     <td className="py-4 px-4 text-center text-gray-400">{row.stealth}</td>
+                    <td className="py-4 px-4 text-center">
+                      <Link 
+                        href={`/contact?service=wrap&model=${encodeURIComponent(row.model)}`}
+                        className="text-xs text-purple-400 hover:underline"
+                      >
+                        Book →
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -177,6 +217,7 @@ export default function PricingPage() {
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Front Two</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full Vehicle</th>
                   <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full + Windshield</th>
+                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500"></th>
                 </tr>
               </thead>
               <tbody>
@@ -186,6 +227,14 @@ export default function PricingPage() {
                     <td className="py-4 px-4 text-center text-gray-400">{row.frontTwo}</td>
                     <td className="py-4 px-4 text-center text-amber-400 font-medium">{row.full}</td>
                     <td className="py-4 px-4 text-center text-gray-400">{row.fullWindshield}</td>
+                    <td className="py-4 px-4 text-center">
+                      <Link 
+                        href={`/contact?service=tint&model=${encodeURIComponent(row.model)}`}
+                        className="text-xs text-amber-400 hover:underline"
+                      >
+                        Book →
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -214,7 +263,13 @@ export default function PricingPage() {
                 <h3 className="text-lg font-light mt-2">{pkg.name}</h3>
                 <p className="text-3xl font-extralight text-emerald-400 my-3">{pkg.price}</p>
                 <p className="text-sm text-gray-500 mb-2">{pkg.warranty} warranty</p>
-                <p className="text-xs text-gray-600">{pkg.description}</p>
+                <p className="text-xs text-gray-600 mb-4">{pkg.description}</p>
+                <Link 
+                  href={`/contact?service=coating-${pkg.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="block text-center py-2 rounded-full text-sm bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  Book Now
+                </Link>
               </div>
             ))}
           </div>
@@ -231,7 +286,7 @@ export default function PricingPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {addOns.map((addon) => (
-              <div key={addon.name} className="p-4 rounded-xl border border-white/10 flex justify-between items-center">
+              <div key={addon.name} className="p-4 rounded-xl border border-white/10 flex justify-between items-center hover:border-cyan-500/30 transition-colors">
                 <span className="text-sm text-gray-300">{addon.name}</span>
                 <span className="text-sm text-cyan-400">{addon.price}</span>
               </div>
