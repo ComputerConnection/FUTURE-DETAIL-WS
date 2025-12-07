@@ -46,6 +46,7 @@ export default function Footer() {
               <li><Link href="/wraps" className="text-sm text-gray-400 hover:text-white transition-colors">Color Change Wraps</Link></li>
               <li><Link href="/tint" className="text-sm text-gray-400 hover:text-white transition-colors">Window Tinting</Link></li>
               <li><Link href="/coatings" className="text-sm text-gray-400 hover:text-white transition-colors">Ceramic Coatings</Link></li>
+              <li><Link href="/accessories" className="text-sm text-gray-400 hover:text-white transition-colors">Accessories</Link></li>
               <li><Link href="/pricing" className="text-sm text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>

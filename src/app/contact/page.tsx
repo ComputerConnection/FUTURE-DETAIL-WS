@@ -8,6 +8,7 @@ const services = [
   { id: 'wrap', label: 'Color Change Wrap', icon: '🎨' },
   { id: 'tint', label: 'Window Tinting', icon: '🕶️' },
   { id: 'coating', label: 'Ceramic Coating', icon: '✨' },
+  { id: 'accessories', label: 'Unplugged Accessories', icon: '⚡' },
 ];
 
 export default function ContactPage() {

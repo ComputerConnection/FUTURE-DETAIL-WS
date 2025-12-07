@@ -57,6 +57,18 @@ const services = [
       </svg>
     ),
   },
+  {
+    title: 'Unplugged Performance',
+    description: 'Authorized dealer for premium Tesla accessories, aero kits, wheels, and performance upgrades.',
+    href: '/accessories',
+    features: ['Aero body kits', 'Forged wheels', 'Performance upgrades'],
+    gradient: 'rgba(239, 68, 68, 0.15)',
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function HomePage() {
@@ -83,7 +95,7 @@ export default function HomePage() {
               Engineered protection for every Tesla. From invisible defense to bold transformations.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {services.map((service, index) => (
               <AnimatedServiceCard key={service.title} {...service} index={index} />
             ))}

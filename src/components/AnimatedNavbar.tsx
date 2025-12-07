@@ -9,10 +9,9 @@ const navLinks = [
   { href: '/wraps', label: 'Wraps' },
   { href: '/tint', label: 'Tint' },
   { href: '/coatings', label: 'Coatings' },
+  { href: '/accessories', label: 'Accessories' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/about', label: 'About' },
-  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function AnimatedNavbar() {
