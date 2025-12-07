@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const services = [
@@ -11,7 +11,7 @@ const services = [
   { id: 'accessories', label: 'Unplugged Accessories', icon: '⚡' },
 ];
 
-export default function ContactPage() {
+function ContactForm() {
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -26,6 +26,7 @@ export default function ContactPage() {
       if (service.includes('wrap')) setSelectedServices((prev) => [...prev, 'wrap']);
       if (service.includes('tint')) setSelectedServices((prev) => [...prev, 'tint']);
       if (service.includes('coating')) setSelectedServices((prev) => [...prev, 'coating']);
+      if (service.includes('accessories')) setSelectedServices((prev) => [...prev, 'accessories']);
     }
   }, [searchParams]);
 
@@ -359,5 +360,29 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+// Loading fallback for Suspense
+function ContactLoading() {
+  return (
+    <div className="bg-black pt-20 min-h-screen">
+      <section className="py-24">
+        <div className="container-wide">
+          <div className="flex items-center justify-center">
+            <div className="animate-spin w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full" />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// Main page component with Suspense wrapper
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<ContactLoading />}>
+      <ContactForm />
+    </Suspense>
   );
 }
