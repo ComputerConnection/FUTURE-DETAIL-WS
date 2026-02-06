@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Image Manifest",
+  "description": "Catalog of all website images for AI-assisted management",
+  "type": "object",
+  "properties": {
+    "lastUpdated": {
+      "type": "string",
+      "format": "date"
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": { "type": "string" },
+                "alt": { "type": "string", "description": "Accessible alt text" },
+                "width": { "type": "integer" },
+                "height": { "type": "integer" },
+                "category": { "type": "string", "description": "PPF, Wrap, Tint, Coating, etc." },
+                "vehicle": { "type": "string", "description": "Model 3, Model Y, etc." },
+                "placement": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Where this image is used: ['homepage-hero', 'gallery', 'ppf-page']"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": ["primary", "secondary", "background"],
+                  "description": "primary = above fold, secondary = scrollable, background = decorative"
+                }
+              },
+              "required": ["filename", "alt"]
+            }
+          }
+        }
+      }
+    }
+  }
+}

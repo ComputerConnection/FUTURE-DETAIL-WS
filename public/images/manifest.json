@@ -1,0 +1,30 @@
+{
+  "$schema": "./manifest.schema.json",
+  "lastUpdated": "2025-02-05",
+  "assets": {
+    "hero": {
+      "description": "Homepage hero section images",
+      "files": []
+    },
+    "gallery": {
+      "description": "Project gallery images",
+      "files": []
+    },
+    "logos": {
+      "description": "Brand logos and marks",
+      "files": []
+    },
+    "services": {
+      "description": "Service page images (PPF, wraps, tint, coatings)",
+      "files": []
+    },
+    "about": {
+      "description": "About page, team photos",
+      "files": []
+    },
+    "testimonials": {
+      "description": "Customer photos for reviews",
+      "files": []
+    }
+  }
+}
