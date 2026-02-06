@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { siteConfig } from '@/config/site';
 
 const services = [
   { id: 'ppf', label: 'Paint Protection Film', icon: '🛡️' },
@@ -341,18 +342,27 @@ function ContactForm() {
                   </p>
                 </div>
 
-                {/* Calendar Placeholder */}
-                <div className="p-8 rounded-2xl border border-white/10">
-                  <h3 className="font-light mb-4">Quick Schedule</h3>
-                  <p className="text-sm text-gray-500 mb-4">
-                    Want to book directly? We&apos;re adding online scheduling soon. For now, call or text for the fastest response.
-                  </p>
-                  <a 
-                    href="tel:+14053159202"
-                    className="block text-center py-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
-                  >
-                    Call Now
-                  </a>
+                {/* Calendly Embed */}
+                <div className="rounded-2xl border border-white/10 overflow-hidden">
+                  <div className="p-4 border-b border-white/10 bg-white/5">
+                    <h3 className="font-light">Book Online</h3>
+                    <p className="text-xs text-gray-500">Select a time that works for you</p>
+                  </div>
+                  <div className="bg-white rounded-b-xl">
+                    <iframe
+                      src={`${siteConfig.calendly.url}?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=00d4ff`}
+                      width="100%"
+                      height="400"
+                      frameBorder="0"
+                      title="Schedule a consultation"
+                      className="rounded-b-xl"
+                    />
+                  </div>
+                  <div className="p-3 bg-white/5 text-center">
+                    <p className="text-xs text-gray-500">
+                      Prefer to talk? <a href="tel:+14053159202" className="text-cyan-400 hover:underline">Call (405) 315-9202</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import { siteConfig } from '@/config/site';
 
 export default function AnimatedHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -46,12 +47,28 @@ export default function AnimatedHero() {
 
       {/* Content */}
       <div className="container-wide relative z-10 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-pulse-glow">
-          <span className="w-2 h-2 bg-cyan-400 rounded-full" />
-          <span className="text-xs font-medium text-gray-300 tracking-wider uppercase">
-            Tesla Protection Specialists
-          </span>
+        {/* Badges */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 animate-pulse-glow">
+            <span className="w-2 h-2 bg-cyan-400 rounded-full" />
+            <span className="text-xs font-medium text-gray-300 tracking-wider uppercase">
+              Tesla Protection Specialists
+            </span>
+          </div>
+
+          {/* Google Reviews Badge */}
+          <a
+            href={siteConfig.social.googleReviews}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" stroke="#FBBF24" strokeWidth="1"/>
+            </svg>
+            <span className="text-sm font-medium text-white">{siteConfig.reviews.rating}</span>
+            <span className="text-xs text-gray-400">from {siteConfig.reviews.count}+ reviews</span>
+          </a>
         </div>
 
         {/* Headline */}

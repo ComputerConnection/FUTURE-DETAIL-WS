@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 interface Project {
   title: string;
@@ -18,28 +18,63 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter((p) => p.category === activeCategory);
+  const filteredProjects = useMemo(() =>
+    activeCategory === 'All'
+      ? projects
+      : projects.filter((p) => p.category === activeCategory),
+    [activeCategory, projects]
+  );
 
-  const openLightbox = (index: number) => {
+  const openLightbox = useCallback((index: number) => {
     setActiveIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
-    document.body.style.overflow = '';
-  };
+  }, []);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setActiveIndex((prev) => (prev === 0 ? filteredProjects.length - 1 : prev - 1));
-  };
+  }, [filteredProjects.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setActiveIndex((prev) => (prev === filteredProjects.length - 1 ? 0 : prev + 1));
-  };
+  }, [filteredProjects.length]);
+
+  // Handle body scroll lock
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          goToPrevious();
+          break;
+        case 'ArrowRight':
+          goToNext();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, closeLightbox, goToPrevious, goToNext]);
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -66,7 +101,7 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
       {/* Filter Buttons */}
       <section className="py-8 border-t border-white/5 sticky top-20 bg-black/90 backdrop-blur-xl z-10">
         <div className="container-wide">
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter by category">
             {categories.map((category) => (
               <button
                 key={category}
@@ -76,6 +111,7 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
                     ? 'bg-cyan-500 text-black scale-105'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10'
                 }`}
+                aria-pressed={activeCategory === category}
               >
                 {category}
                 {category !== 'All' && (
@@ -90,14 +126,18 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-16">
+      <section className="py-16" aria-label="Project gallery">
         <div className="container-wide">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
-              <div
-                key={index}
+              <article
+                key={`${project.category}-${project.title}`}
                 onClick={() => openLightbox(index)}
+                onKeyDown={(e) => e.key === 'Enter' && openLightbox(index)}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/30 transition-all cursor-pointer"
+                tabIndex={0}
+                role="button"
+                aria-label={`View ${project.title} - ${project.category}`}
               >
                 {/* Placeholder image */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(project.category)} group-hover:scale-105 transition-transform duration-500`}>
@@ -118,12 +158,12 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
                 </div>
 
                 {/* Zoom icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                   </svg>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
@@ -136,17 +176,21 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
       </section>
 
       {/* Lightbox Modal */}
-      {lightboxOpen && (
-        <div 
+      {lightboxOpen && filteredProjects[activeIndex] && (
+        <div
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center"
           onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Viewing ${filteredProjects[activeIndex].title}`}
         >
           {/* Close button */}
           <button
             onClick={closeLightbox}
             className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+            aria-label="Close lightbox"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -155,22 +199,24 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
           <button
             onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
             className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            aria-label="Previous image"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); goToNext(); }}
             className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            aria-label="Next image"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           {/* Image container */}
-          <div 
+          <div
             className="max-w-5xl w-full mx-auto px-20"
             onClick={(e) => e.stopPropagation()}
           >
@@ -187,7 +233,7 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
           </div>
 
           {/* Counter */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-gray-500">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-gray-500" aria-live="polite">
             {activeIndex + 1} / {filteredProjects.length}
           </div>
         </div>
@@ -195,4 +241,3 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
     </>
   );
 }
-
