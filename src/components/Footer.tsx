@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed max-w-md mb-6">
-              Premium Paint Protection Film, color-change wraps, window tinting, and ceramic coatings
+              Premium Paint Protection Film, window tinting, and ceramic coatings
               for Tesla vehicles. Precision-installed protection in Edmond, Oklahoma.
             </p>
             <div className="space-y-2">
@@ -44,11 +44,10 @@ export default function Footer() {
             <h4 className="text-xs font-medium uppercase tracking-wider mb-6 text-gray-500">Services</h4>
             <ul className="space-y-3">
               <li><Link href="/ppf" className="text-sm text-gray-400 hover:text-white transition-colors">Paint Protection Film</Link></li>
-              <li><Link href="/wraps" className="text-sm text-gray-400 hover:text-white transition-colors">Color Change Wraps</Link></li>
               <li><Link href="/tint" className="text-sm text-gray-400 hover:text-white transition-colors">Window Tinting</Link></li>
               <li><Link href="/coatings" className="text-sm text-gray-400 hover:text-white transition-colors">Ceramic Coatings</Link></li>
               <li><Link href="/accessories" className="text-sm text-gray-400 hover:text-white transition-colors">Accessories</Link></li>
-              <li><Link href="/pricing" className="text-sm text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/cybertruck" className="text-sm text-gray-400 hover:text-white transition-colors">Cybertruck</Link></li>
             </ul>
           </div>
 
@@ -92,7 +91,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-600">&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-          <p className="text-xs text-gray-600">Tesla PPF, Wraps & Tinting in Oklahoma City</p>
+          <p className="text-xs text-gray-600">Tesla PPF & Tinting in Oklahoma City</p>
         </div>
       </div>
     </footer>

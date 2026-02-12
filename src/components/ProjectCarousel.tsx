@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const projects = [
   { title: 'Model Y Stealth PPF', category: 'PPF', gradient: 'from-cyan-500/20 to-blue-500/20', color: 'cyan' },
-  { title: 'Model 3 Nardo Gray', category: 'Wrap', gradient: 'from-purple-500/20 to-pink-500/20', color: 'purple' },
+  { title: 'Model 3 Full Front PPF', category: 'PPF', gradient: 'from-cyan-500/20 to-blue-500/20', color: 'cyan' },
   { title: 'Cybertruck Full PPF', category: 'PPF', gradient: 'from-cyan-500/20 to-blue-500/20', color: 'cyan' },
   { title: 'Model S Ceramic Coating', category: 'Coating', gradient: 'from-emerald-500/20 to-teal-500/20', color: 'emerald' },
   { title: 'Model X 20% Tint', category: 'Tint', gradient: 'from-amber-500/20 to-orange-500/20', color: 'amber' },

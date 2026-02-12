@@ -5,25 +5,25 @@ import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export const metadata: Metadata = {
   title: 'Gallery | Our Work | FUTURE DETAIL',
-  description: 'View our Tesla PPF, wrap, tint, and ceramic coating portfolio. Before and after transformations in Oklahoma City.',
+  description: 'View our Tesla PPF, tint, and ceramic coating portfolio. Before and after transformations in Oklahoma City.',
 };
 
 const projects = [
   { title: 'Model Y Stealth PPF', category: 'PPF', description: 'Full body stealth conversion on Pearl White' },
-  { title: 'Model 3 Nardo Gray Wrap', category: 'Wrap', description: 'Complete color change from black to Nardo Gray' },
   { title: 'Cybertruck Full PPF', category: 'PPF', description: 'Full body protection on stainless steel' },
   { title: 'Model S Ceramic Coating', category: 'Coating', description: '5-year ceramic with paint correction' },
-  { title: 'Model X Chrome Delete', category: 'Wrap', description: 'Satin black chrome delete package' },
   { title: 'Model Y Ceramic Tint', category: 'Tint', description: 'LLumar Ceramic IRX 20% all around' },
-  { title: 'Model 3 Miami Blue Wrap', category: 'Wrap', description: 'Gloss Miami Blue full color change' },
   { title: 'Model Y Track Package', category: 'PPF', description: 'Extended coverage for daily driver' },
-  { title: 'Model S Satin Black Wrap', category: 'Wrap', description: 'Full body satin black transformation' },
   { title: 'Cybertruck Ceramic Coating', category: 'Coating', description: 'Custom coating for stainless steel' },
   { title: 'Model 3 Full Front PPF', category: 'PPF', description: 'Essential protection package' },
   { title: 'Model X Full Tint', category: 'Tint', description: 'Ceramic tint with windshield strip' },
+  { title: 'Model 3 Stealth PPF', category: 'PPF', description: 'Full body stealth matte finish' },
+  { title: 'Model S Full Tint', category: 'Tint', description: 'LLumar IRX with windshield' },
+  { title: 'Model Y Ceramic Coating', category: 'Coating', description: '5-year coating with full detail' },
+  { title: 'Cybertruck Tint', category: 'Tint', description: 'Ceramic tint for heat rejection' },
 ];
 
-const categories = ['All', 'PPF', 'Wrap', 'Tint', 'Coating'];
+const categories = ['All', 'PPF', 'Tint', 'Coating'];
 
 export default function GalleryPage() {
   return (

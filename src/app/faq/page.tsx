@@ -30,27 +30,6 @@ const faqs = [
     ],
   },
   {
-    category: 'Color Change Wraps',
-    questions: [
-      {
-        q: 'Will a wrap damage my factory paint?',
-        a: 'No. High-quality wraps from brands like PurePPF actually protect your paint. When removed professionally, your factory paint will be in the same condition as when the wrap was applied—often better since it was protected from UV and debris.',
-      },
-      {
-        q: 'How long do wraps last?',
-        a: 'Quality color change wraps typically last 5-7 years with proper care. Our PurePPF wraps come with a 7-year warranty and feature self-healing technology.',
-      },
-      {
-        q: 'Can I wrap a leased Tesla?',
-        a: 'Absolutely! Wraps are fully reversible, making them perfect for leased vehicles. Remove the wrap before returning the vehicle and your original paint is preserved.',
-      },
-      {
-        q: 'Do you wrap door jambs?',
-        a: 'Yes, our full color change wraps include door jambs for a seamless look when doors are open. This is included in our Full Color Change package.',
-      },
-    ],
-  },
-  {
     category: 'Window Tinting',
     questions: [
       {
@@ -104,12 +83,12 @@ const faqs = [
         a: 'Yes! We partner with Affirm to offer flexible payment plans. Split your purchase into monthly payments with rates as low as 0% APR for qualified buyers.',
       },
       {
-        q: 'How do I care for my PPF/wrap/coating?',
+        q: 'How do I care for my PPF or coating?',
         a: 'We provide detailed care instructions with every service. Generally: hand wash or touchless wash only, avoid automatic car washes with brushes, use pH-neutral soaps, and apply a spray sealant every few months for best results.',
       },
       {
         q: 'Do you offer mobile service?',
-        a: 'No. Quality PPF, wrap, and coating installation requires a climate-controlled, dust-free environment. All work is performed at our Edmond facility.',
+        a: 'No. Quality PPF and coating installation requires a climate-controlled, dust-free environment. All work is performed at our Edmond facility.',
       },
     ],
   },

@@ -91,14 +91,6 @@ const jsonLd = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Color Change Wraps',
-              description: 'Premium vinyl wraps to transform your Tesla with any color or finish',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
               name: 'Ceramic Window Tinting',
               description: 'LLumar ceramic tint with 98% infrared rejection and lifetime warranty',
             },

@@ -31,7 +31,7 @@ export default function TermsPage() {
               <h2 className="text-xl font-light text-white mb-4">2. Services</h2>
               <p className="text-gray-400 leading-relaxed">
                 {siteConfig.name} provides automotive protection services including but not limited to Paint
-                Protection Film (PPF) installation, color change wraps, window tinting, ceramic coatings, and
+                Protection Film (PPF) installation, window tinting, ceramic coatings, and
                 aftermarket accessory installation. All services are performed at our facility in Edmond, Oklahoma.
               </p>
             </section>
@@ -78,10 +78,6 @@ export default function TermsPage() {
                   <strong className="text-white">Paint Protection Film:</strong> Covered by manufacturer warranty
                   (typically 10 years) against yellowing, cracking, peeling, and delamination. Warranty does not
                   cover damage from accidents, abuse, or improper care.
-                </p>
-                <p>
-                  <strong className="text-white">Color Change Wraps:</strong> Covered by manufacturer warranty
-                  (typically 5-7 years) against fading, cracking, and peeling under normal conditions.
                 </p>
                 <p>
                   <strong className="text-white">Window Tinting:</strong> LLumar products include lifetime warranty

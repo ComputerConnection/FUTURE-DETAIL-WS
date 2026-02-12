@@ -7,11 +7,10 @@ import { siteConfig } from '@/config/site';
 
 const navLinks = [
   { href: '/ppf', label: 'PPF' },
-  { href: '/wraps', label: 'Wraps' },
   { href: '/tint', label: 'Tint' },
   { href: '/coatings', label: 'Coatings' },
   { href: '/accessories', label: 'Accessories' },
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/cybertruck', label: 'Cybertruck' },
   { href: '/gallery', label: 'Gallery' },
 ];
 

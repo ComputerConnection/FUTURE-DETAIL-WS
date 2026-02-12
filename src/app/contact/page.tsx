@@ -7,10 +7,10 @@ import { siteConfig } from '@/config/site';
 
 const services = [
   { id: 'ppf', label: 'Paint Protection Film', icon: '🛡️' },
-  { id: 'wrap', label: 'Color Change Wrap', icon: '🎨' },
   { id: 'tint', label: 'Window Tinting', icon: '🕶️' },
   { id: 'coating', label: 'Ceramic Coating', icon: '✨' },
   { id: 'accessories', label: 'Unplugged Accessories', icon: '⚡' },
+  { id: 'cybertruck', label: 'Cybertruck Services', icon: '🚀' },
 ];
 
 function ContactForm() {
@@ -25,10 +25,10 @@ function ContactForm() {
     const service = searchParams.get('service');
     if (service) {
       if (service.includes('ppf')) setSelectedServices((prev) => [...prev, 'ppf']);
-      if (service.includes('wrap')) setSelectedServices((prev) => [...prev, 'wrap']);
       if (service.includes('tint')) setSelectedServices((prev) => [...prev, 'tint']);
       if (service.includes('coating')) setSelectedServices((prev) => [...prev, 'coating']);
       if (service.includes('accessories')) setSelectedServices((prev) => [...prev, 'accessories']);
+      if (service.includes('cybertruck')) setSelectedServices((prev) => [...prev, 'cybertruck']);
     }
   }, [searchParams]);
 
@@ -266,7 +266,7 @@ function ContactForm() {
                   <textarea 
                     name="message"
                     rows={4}
-                    defaultValue={searchParams.get('color') ? `Interested in ${searchParams.get('color')} wrap color.` : ''}
+                    defaultValue=""
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors resize-none"
                     placeholder="Tell us about your project..."
                   />
@@ -343,26 +343,20 @@ function ContactForm() {
                   </p>
                 </div>
 
-                {/* Calendly Embed */}
+                {/* Call CTA */}
                 <div className="rounded-2xl border border-white/10 overflow-hidden">
-                  <div className="p-4 border-b border-white/10 bg-white/5">
-                    <h3 className="font-light">Book Online</h3>
-                    <p className="text-xs text-gray-500">Select a time that works for you</p>
-                  </div>
-                  <div className="bg-white rounded-b-xl">
-                    <iframe
-                      src={`${siteConfig.calendly.url}?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=00d4ff`}
-                      width="100%"
-                      height="400"
-                      frameBorder="0"
-                      title="Schedule a consultation"
-                      className="rounded-b-xl"
-                    />
-                  </div>
-                  <div className="p-3 bg-white/5 text-center">
-                    <p className="text-xs text-gray-500">
-                      Prefer to talk? <a href="tel:+14053159202" className="text-cyan-400 hover:underline">Call (405) 315-9202</a>
-                    </p>
+                  <div className="p-6 text-center">
+                    <h3 className="font-light mb-2">Prefer to Talk?</h3>
+                    <p className="text-sm text-gray-500 mb-4">Call us directly for immediate assistance</p>
+                    <a
+                      href="tel:+14053159202"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:scale-105 transition-transform"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      (405) 315-9202
+                    </a>
                   </div>
                 </div>
               </div>

@@ -1,3 +1,5 @@
+import { siteConfig } from '@/config/site';
+
 const reviews = [
   {
     name: 'Michael T.',
@@ -17,7 +19,7 @@ const reviews = [
     name: 'James R.',
     rating: 5,
     date: '1 month ago',
-    text: 'Got the full wrap in Nardo Gray and it looks absolutely stunning. The install was flawless - no bubbles, perfect edges. Everett knows his stuff.',
+    text: 'Got the full body PPF and it looks absolutely stunning. The install was flawless - no bubbles, perfect edges. Everett knows his stuff.',
     avatar: 'JR',
   },
   {
@@ -58,8 +60,8 @@ export default function GoogleReviews() {
                 </svg>
               ))}
             </div>
-            <span className="text-2xl font-extralight">4.9</span>
-            <span className="text-gray-500">({reviews.length}+ reviews)</span>
+            <span className="text-2xl font-extralight">{siteConfig.reviews.rating}</span>
+            <span className="text-gray-500">({siteConfig.reviews.count} reviews)</span>
           </div>
         </div>
 
@@ -101,7 +103,7 @@ export default function GoogleReviews() {
         {/* CTA */}
         <div className="text-center mt-12">
           <a
-            href="https://g.page/r/futuredetailokc/review"
+            href={siteConfig.social.googleReviews}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full text-sm hover:bg-white/10 transition-colors"

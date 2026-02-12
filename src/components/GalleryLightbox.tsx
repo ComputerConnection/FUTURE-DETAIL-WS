@@ -79,7 +79,6 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'PPF': return 'bg-cyan-500/20 text-cyan-400';
-      case 'Wrap': return 'bg-purple-500/20 text-purple-400';
       case 'Tint': return 'bg-amber-500/20 text-amber-400';
       case 'Coating': return 'bg-emerald-500/20 text-emerald-400';
       default: return 'bg-gray-500/20 text-gray-400';
@@ -89,7 +88,6 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
   const getCategoryGradient = (category: string) => {
     switch (category) {
       case 'PPF': return 'from-cyan-500/20 to-blue-500/20';
-      case 'Wrap': return 'from-purple-500/20 to-pink-500/20';
       case 'Tint': return 'from-amber-500/20 to-orange-500/20';
       case 'Coating': return 'from-emerald-500/20 to-teal-500/20';
       default: return 'from-gray-500/20 to-gray-600/20';

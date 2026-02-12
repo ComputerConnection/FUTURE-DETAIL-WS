@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const certifications = [
   { name: 'XPEL Certified', logo: 'XPEL', description: 'Factory-trained PPF installer' },
-  { name: '3M Certified', logo: '3M', description: 'Authorized wrap installer' },
+  { name: '3M Certified', logo: '3M', description: 'Authorized PPF installer' },
   { name: 'LLumar Certified', logo: 'LLumar', description: 'Certified tint professional' },
   { name: 'Ceramic Pro', logo: 'CP', description: 'Certified coating applicator' },
 ];
@@ -25,7 +25,7 @@ const stats = [
   { value: '500+', label: 'Teslas Protected' },
   { value: '5', label: 'Years Experience' },
   { value: '100%', label: 'Satisfaction Rate' },
-  { value: '4.9', label: 'Google Rating' },
+  { value: '5.0', label: 'Google Rating' },
 ];
 
 export default function AboutPage() {
@@ -163,8 +163,8 @@ export default function AboutPage() {
               <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Our Facility</p>
               <h2 className="text-3xl font-extralight mb-6">Climate-Controlled Studio</h2>
               <p className="text-gray-400 leading-relaxed mb-6">
-                Our Edmond facility is purpose-built for automotive protection. Climate-controlled to maintain 
-                optimal temperature and humidity for PPF and wrap installation. Filtered air keeps dust and 
+                Our Edmond facility is purpose-built for automotive protection. Climate-controlled to maintain
+                optimal temperature and humidity for PPF and coating installation. Filtered air keeps dust and
                 contaminants away from your vehicle.
               </p>
               <ul className="space-y-4">

@@ -3,7 +3,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'FAQ | Frequently Asked Questions | FUTURE DETAIL',
-  description: 'Common questions about Tesla PPF, wraps, window tinting, and ceramic coatings. Learn about installation times, warranties, pricing, and care instructions.',
+  description: 'Common questions about Tesla PPF, window tinting, and ceramic coatings. Learn about installation times, warranties, pricing, and care instructions.',
 };
 
 // FAQ Schema for rich snippets
@@ -42,31 +42,6 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Full front coverage takes 1-2 days. Track package takes 2-3 days. Full body coverage takes 3-5 days. We never rush installations to ensure perfect results.',
-      },
-    },
-    // Wrap Questions
-    {
-      '@type': 'Question',
-      name: 'Will a wrap damage my factory paint?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. High-quality wraps actually protect your paint. When removed professionally, your factory paint will be in the same condition as when the wrap was applied—often better since it was protected from UV and debris.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long do wraps last?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Quality color change wraps typically last 5-7 years with proper care. Our PurePPF wraps come with a 7-year warranty and feature self-healing technology.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I wrap a leased Tesla?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Absolutely! Wraps are fully reversible, making them perfect for leased vehicles. Remove the wrap before returning the vehicle and your original paint is preserved.',
       },
     },
     // Tint Questions

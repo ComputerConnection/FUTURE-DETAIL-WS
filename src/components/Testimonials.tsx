@@ -22,10 +22,10 @@ const testimonials = [
     service: "Full Vehicle Tint",
   },
   {
-    quote: "Wrapped my Model S in Nardo Gray and couldn't be happier. The color is stunning and the quality is top-notch. Already getting compliments everywhere I go.",
+    quote: "The full body PPF on my Model S looks incredible. The stealth finish really makes the car stand out. Already getting compliments everywhere I go.",
     author: "David M.",
     vehicle: "Model S Plaid",
-    service: "Full Color Change Wrap",
+    service: "Full Body Stealth PPF",
   },
   {
     quote: "FUTURE DETAIL is the only shop I trust with my Cybertruck. They took their time to do it right and the results speak for themselves.",

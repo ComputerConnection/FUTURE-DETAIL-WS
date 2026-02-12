@@ -40,10 +40,10 @@ export default function NotFound() {
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { href: '/ppf', label: 'PPF' },
-              { href: '/wraps', label: 'Wraps' },
               { href: '/tint', label: 'Tint' },
               { href: '/coatings', label: 'Coatings' },
-              { href: '/pricing', label: 'Pricing' },
+              { href: '/cybertruck', label: 'Cybertruck' },
+              { href: '/contact', label: 'Contact' },
             ].map((link) => (
               <Link
                 key={link.href}

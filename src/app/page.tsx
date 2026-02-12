@@ -7,6 +7,7 @@ import Testimonials from '@/components/Testimonials';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import ProjectCarousel from '@/components/ProjectCarousel';
+import GoogleReviews from '@/components/GoogleReviews';
 
 const services = [
   {
@@ -18,18 +19,6 @@ const services = [
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Color Change Wraps',
-    description: 'Transform your Tesla with premium vinyl in any color or finish. Fully reversible, fully remarkable.',
-    href: '/wraps',
-    features: ['80+ color options', 'Protects OEM paint', 'Reversible transformation'],
-    gradient: 'rgba(124, 58, 237, 0.15)',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
       </svg>
     ),
   },
@@ -95,7 +84,7 @@ export default function HomePage() {
               Engineered protection for every Tesla. From invisible defense to bold transformations.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <AnimatedServiceCard key={service.title} {...service} index={index} />
             ))}
@@ -162,6 +151,9 @@ export default function HomePage() {
       {/* Testimonials */}
       <Testimonials />
 
+      {/* Google Reviews */}
+      <GoogleReviews />
+
       {/* CTA */}
       <section className="py-24 bg-gradient-to-t from-gray-950 to-black">
         <div className="container-wide text-center">
@@ -179,14 +171,17 @@ export default function HomePage() {
               href="/contact"
               className="px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:scale-105 transition-transform"
             >
-              Book a Consultation
+              Get a Quote
             </Link>
-            <Link
-              href="/pricing"
-              className="px-10 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/10 transition-colors"
+            <a
+              href="tel:+14053159202"
+              className="px-10 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
             >
-              View Pricing
-            </Link>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              (405) 315-9202
+            </a>
           </div>
         </div>
       </section>

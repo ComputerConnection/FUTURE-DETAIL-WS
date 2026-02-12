@@ -67,7 +67,7 @@ export default function AnimatedHero() {
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" stroke="#FBBF24" strokeWidth="1"/>
             </svg>
             <span className="text-sm font-medium text-white">{siteConfig.reviews.rating}</span>
-            <span className="text-xs text-gray-400">from {siteConfig.reviews.count}+ reviews</span>
+            <span className="text-xs text-gray-400">{siteConfig.reviews.count} reviews</span>
           </a>
         </div>
 
@@ -82,7 +82,7 @@ export default function AnimatedHero() {
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 opacity-0 animate-[fadeIn_1s_ease_0.6s_forwards]">
-          Premium Paint Protection Film, color-change wraps, window tinting, and ceramic coatings.
+          Premium Paint Protection Film, window tinting, and ceramic coatings.
           Precision-installed for Tesla owners who expect more.
         </p>
 
@@ -95,15 +95,15 @@ export default function AnimatedHero() {
             <span className="relative z-10">Book a Consultation</span>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
-          <Link
-            href="/pricing"
+          <a
+            href="tel:+14053159202"
             className="group px-8 py-4 border border-white/20 rounded-full font-medium hover:bg-white/10 transition-all flex items-center justify-center gap-2"
           >
-            View Pricing
-            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-          </Link>
+            (405) 315-9202
+          </a>
         </div>
       </div>
 
@@ -115,22 +115,6 @@ export default function AnimatedHero() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-      `}</style>
     </section>
   );
 }
