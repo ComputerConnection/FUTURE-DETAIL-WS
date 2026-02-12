@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
 const services = [
@@ -94,12 +95,12 @@ function ContactForm() {
                 ⏱️ We typically respond within 2 hours during business hours (Mon-Fri, 9am-6pm)
               </p>
             </div>
-            <a 
+            <Link
               href="/"
               className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:scale-[1.02] transition-transform"
             >
               Back to Home
-            </a>
+            </Link>
           </div>
         </section>
       </div>
