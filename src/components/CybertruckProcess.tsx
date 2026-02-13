@@ -53,7 +53,7 @@ export default function CybertruckProcess() {
                 : 'border-white/5 hover:border-white/10'
             }`}
           >
-            <div className="flex items-start gap-5">
+            <div className="flex items-center gap-5">
               <div
                 className={`flex-shrink-0 w-11 h-11 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
                   index === activeStep
@@ -71,24 +71,30 @@ export default function CybertruckProcess() {
                   {step.number}
                 </span>
               </div>
-              <div className="flex-1 min-w-0">
-                <h3
-                  className={`text-lg font-light transition-colors duration-500 ${
-                    index === activeStep ? 'text-white' : 'text-gray-500'
-                  }`}
-                >
-                  {step.title}
-                </h3>
-                <div
-                  className={`overflow-hidden transition-all duration-500 ${
-                    index === activeStep ? 'max-h-32 opacity-100 mt-2' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
-                </div>
-              </div>
+              <h3
+                className={`text-lg font-light transition-colors duration-500 ${
+                  index === activeStep ? 'text-white' : 'text-gray-500'
+                }`}
+              >
+                {step.title}
+              </h3>
             </div>
           </button>
+        ))}
+      </div>
+      {/* Description area — grid overlay keeps height stable (sized to tallest item) */}
+      <div className="mt-6 grid">
+        {steps.map((step, index) => (
+          <div
+            key={step.number}
+            className={`col-start-1 row-start-1 transition-opacity duration-500 ${
+              index === activeStep ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          >
+            <div className="p-6 rounded-2xl bg-cyan-500/5 border border-cyan-500/20">
+              <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
