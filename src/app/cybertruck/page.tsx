@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import CybertruckStats from '@/components/CybertruckStats';
 import CybertruckProcess from '@/components/CybertruckProcess';
 import CybertruckFAQ from '@/components/CybertruckFAQ';
@@ -194,38 +193,6 @@ export default function CybertruckPage() {
         </div>
       </section>
 
-      {/* ── Before / After Showcase ── */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
-        <div className="container-wide">
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-sm font-medium tracking-widest uppercase mb-4">Results</p>
-            <h2 className="text-3xl md:text-4xl font-extralight mb-4">See the Difference</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
-              Drag to compare &mdash; the difference protection makes on stainless steel.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div>
-              <BeforeAfterSlider
-                beforeLabel="Unprotected"
-                afterLabel="PPF Applied"
-                beforeContent="Bare stainless steel — vulnerable to scratches & chips"
-                afterContent="XPEL PPF — self-healing, invisible protection"
-              />
-              <p className="text-center text-sm text-gray-600 mt-4">Paint Protection Film</p>
-            </div>
-            <div>
-              <BeforeAfterSlider
-                beforeLabel="Before Coating"
-                afterLabel="Ceramic Coated"
-                beforeContent="Fingerprints, water spots, constant cleaning"
-                afterContent="Hydrophobic surface — fingerprint resistant"
-              />
-              <p className="text-center text-sm text-gray-600 mt-4">Ceramic Coating</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── Services ── */}
       <section className="py-24 bg-gray-950">
