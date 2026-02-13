@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="currentColor">
+  <!-- FUTURE DETAIL - Stacked Logo (Current Color) -->
+
+  <!-- F Logo Mark -->
+  <g>
+    <!-- Top bar -->
+    <rect x="10" y="10" width="80" height="16" rx="0"/>
+    <!-- Middle bar with vertical stem -->
+    <path d="M10 42 L10 70 L26 70 L26 58 L70 58 L70 42 L10 42 Z"/>
+  </g>
+
+  <!-- Text below -->
+  <text x="50" y="95" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" letter-spacing="2">
+    <tspan font-weight="300">FUTURE</tspan><tspan font-weight="600">DETAIL</tspan>
+  </text>
+</svg>
