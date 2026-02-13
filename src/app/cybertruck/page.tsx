@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import CybertruckStats from '@/components/CybertruckStats';
 import CybertruckProcess from '@/components/CybertruckProcess';
@@ -163,6 +164,23 @@ export default function CybertruckPage() {
               </a>
             </div>
             <p className="text-gray-600 text-xs mt-6">By appointment only &middot; Limited availability</p>
+          </div>
+
+          {/* Hero Image */}
+          <div className="mt-16 max-w-4xl mx-auto">
+            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src="/images/gallery/cybertruck/cybertruck-frozen-ruby.jpg"
+                alt="Cybertruck with Frozen Ruby PPF"
+                width={1200}
+                height={800}
+                className="w-full h-auto"
+                priority
+              />
+              <div className="absolute bottom-4 left-4 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full">
+                <span className="text-sm text-white">Frozen Ruby PPF by FUTURE DETAIL</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -492,6 +510,74 @@ export default function CybertruckPage() {
               <p className="text-sm font-medium text-white">Chris L.</p>
               <p className="text-xs text-gray-600">Cybertruck &middot; Full Body PPF</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gallery ── */}
+      <section className="py-24 bg-black">
+        <div className="container-wide">
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 text-sm font-medium tracking-widest uppercase mb-4">Our Work</p>
+            <h2 className="text-3xl md:text-4xl font-extralight mb-4">Cybertruck Gallery</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
+              Real Cybertrucks we&apos;ve protected. Every install is unique.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <Image
+                src="/images/gallery/cybertruck/cybertruck-frozen-ruby.jpg"
+                alt="Cybertruck Frozen Ruby PPF"
+                width={600}
+                height={400}
+                className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-medium">Frozen Ruby PPF</p>
+                <p className="text-gray-400 text-sm">Full Body Protection</p>
+              </div>
+            </div>
+            <div className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <Image
+                src="/images/gallery/cybertruck/cybertruck-forest-green.png"
+                alt="Cybertruck Forest Green Metallic PPF"
+                width={600}
+                height={400}
+                className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-medium">Forest Green Metallic</p>
+                <p className="text-gray-400 text-sm">Color PPF + Coating</p>
+              </div>
+            </div>
+            <div className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <Image
+                src="/images/gallery/cybertruck/cybertruck-wheel.png"
+                alt="Cybertruck TE37 Wheel"
+                width={600}
+                height={400}
+                className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-medium">TE37 Wheels</p>
+                <p className="text-gray-400 text-sm">Unplugged Performance</p>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full text-sm hover:bg-white/10 transition-colors"
+            >
+              View Full Gallery
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

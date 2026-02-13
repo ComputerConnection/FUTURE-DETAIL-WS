@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 
@@ -86,10 +87,14 @@ export default function AnimatedNavbar() {
         <nav className="relative container-wide" aria-label="Main navigation">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="group relative z-10 flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                <span className="text-white font-medium text-sm">FD</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              </div>
+              <Image
+                src="/images/logos/logo.png"
+                alt="FUTURE DETAIL"
+                width={140}
+                height={32}
+                className="h-6 w-auto group-hover:opacity-80 transition-opacity duration-300"
+                priority
+              />
               <span className="text-xl font-light tracking-tight text-white">
                 <span className="font-light">FUTURE</span>
                 <span className="font-semibold">DETAIL</span>

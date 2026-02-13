@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useCallback, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 
 interface Project {
   title: string;
   category: string;
   description: string;
+  image?: string;
 }
 
 interface GalleryLightboxProps {
@@ -137,12 +139,22 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
                 role="button"
                 aria-label={`View ${project.title} - ${project.category}`}
               >
-                {/* Placeholder image */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(project.category)} group-hover:scale-105 transition-transform duration-500`}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-gray-700 text-sm">{project.title}</span>
+                {/* Project image */}
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(project.category)} group-hover:scale-105 transition-transform duration-500`}>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-gray-700 text-sm">{project.title}</span>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -218,8 +230,21 @@ export default function GalleryLightbox({ projects, categories }: GalleryLightbo
             className="max-w-5xl w-full mx-auto px-20"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={`aspect-[16/10] rounded-2xl bg-gradient-to-br ${getCategoryGradient(filteredProjects[activeIndex].category)} flex items-center justify-center`}>
-              <span className="text-gray-600">{filteredProjects[activeIndex].title}</span>
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+              {filteredProjects[activeIndex].image ? (
+                <Image
+                  src={filteredProjects[activeIndex].image}
+                  alt={filteredProjects[activeIndex].title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  priority
+                />
+              ) : (
+                <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(filteredProjects[activeIndex].category)} flex items-center justify-center`}>
+                  <span className="text-gray-600">{filteredProjects[activeIndex].title}</span>
+                </div>
+              )}
             </div>
             <div className="mt-6 text-center">
               <span className={`text-xs font-medium px-3 py-1 rounded-full ${getCategoryColor(filteredProjects[activeIndex].category)}`}>

@@ -9,18 +9,12 @@ export const metadata: Metadata = {
 };
 
 const projects = [
-  { title: 'Model Y Stealth PPF', category: 'PPF', description: 'Full body stealth conversion on Pearl White' },
-  { title: 'Cybertruck Full PPF', category: 'PPF', description: 'Full body protection on stainless steel' },
-  { title: 'Model S Ceramic Coating', category: 'Coating', description: '5-year ceramic with paint correction' },
-  { title: 'Model Y Ceramic Tint', category: 'Tint', description: 'LLumar Ceramic IRX 20% all around' },
-  { title: 'Model Y Track Package', category: 'PPF', description: 'Extended coverage for daily driver' },
-  { title: 'Cybertruck Ceramic Coating', category: 'Coating', description: 'Custom coating for stainless steel' },
-  { title: 'Model 3 Full Front PPF', category: 'PPF', description: 'Essential protection package' },
-  { title: 'Model X Full Tint', category: 'Tint', description: 'Ceramic tint with windshield strip' },
-  { title: 'Model 3 Stealth PPF', category: 'PPF', description: 'Full body stealth matte finish' },
-  { title: 'Model S Full Tint', category: 'Tint', description: 'LLumar IRX with windshield' },
-  { title: 'Model Y Ceramic Coating', category: 'Coating', description: '5-year coating with full detail' },
-  { title: 'Cybertruck Tint', category: 'Tint', description: 'Ceramic tint for heat rejection' },
+  { title: 'Cybertruck Frozen Ruby', category: 'PPF', description: 'Full body color PPF protection', image: '/images/gallery/cybertruck/cybertruck-frozen-ruby.jpg' },
+  { title: 'Model S Satin Gray', category: 'PPF', description: 'Satin Ashen Gray full body PPF', image: '/images/gallery/models/model-s-rear-gray.jpg' },
+  { title: 'Cybertruck Forest Green', category: 'PPF', description: 'Forest Green Metallic color PPF', image: '/images/gallery/cybertruck/cybertruck-forest-green.png' },
+  { title: 'Model S Front Detail', category: 'PPF', description: 'Precision PPF installation detail', image: '/images/gallery/models/model-s-front-gray.jpg' },
+  { title: 'Cybertruck TE37 Wheels', category: 'Coating', description: 'Unplugged Performance upgrade', image: '/images/gallery/cybertruck/cybertruck-wheel.png' },
+  { title: 'Model S A-Pillar', category: 'PPF', description: 'Detail shot showing PPF quality', image: '/images/gallery/models/model-s-pillar-gray.jpg' },
 ];
 
 const categories = ['All', 'PPF', 'Tint', 'Coating'];
