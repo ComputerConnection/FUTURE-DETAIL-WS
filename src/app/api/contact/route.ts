@@ -48,8 +48,8 @@ function validateInput(body: Record<string, unknown>): {
   if (!email || typeof email !== 'string' || !isValidEmail(email.trim())) {
     return { valid: false, error: 'Valid email is required' };
   }
-  if (!phone || typeof phone !== 'string' || !isValidPhone(phone.trim())) {
-    return { valid: false, error: 'Valid phone number is required' };
+  if (phone && typeof phone === 'string' && phone.trim().length > 0 && !isValidPhone(phone.trim())) {
+    return { valid: false, error: 'Please enter a valid phone number' };
   }
 
   // Length limits
@@ -70,7 +70,7 @@ function validateInput(body: Record<string, unknown>): {
     data: {
       name: escapeHtml(name.trim()),
       email: email.trim().toLowerCase(),
-      phone: escapeHtml(phone.trim()),
+      phone: typeof phone === 'string' && phone.trim().length > 0 ? escapeHtml(phone.trim()) : '',
       model: typeof model === 'string' ? escapeHtml(model.trim()) : '',
       year: typeof year === 'string' ? escapeHtml(year.trim()) : '',
       services: sanitizedServices,
