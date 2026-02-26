@@ -75,20 +75,20 @@ const services = [
 
 const pricing = {
   ppf: [
-    { package: 'Full Front', price: '$2,200', description: 'Hood, fenders, bumper, mirrors', popular: false },
-    { package: 'Track Package', price: '$4,000', description: 'Full front + A-pillars, rockers', popular: true },
-    { package: 'Full Body', price: '$8,000', description: 'Complete coverage, all panels', popular: false },
-    { package: 'Stealth Upgrade', price: '+20%', description: 'Matte finish on any package', popular: false },
+    { package: 'Full Front', description: 'Hood, fenders, bumper, mirrors', popular: false },
+    { package: 'Track Package', description: 'Full front + A-pillars, rockers', popular: true },
+    { package: 'Full Body', description: 'Complete coverage, all panels', popular: false },
+    { package: 'Stealth Upgrade', description: 'Matte finish on any package', popular: false },
   ],
   tint: [
-    { package: 'Front Two', price: '$399', description: 'Driver & passenger windows', popular: false },
-    { package: 'Full Vehicle', price: '$899', description: 'All side + rear glass', popular: true },
-    { package: 'Full + Windshield', price: '$1,299', description: 'Complete glass protection', popular: false },
+    { package: 'Front Two', description: 'Driver & passenger windows', popular: false },
+    { package: 'Full Vehicle', description: 'All side + rear glass', popular: true },
+    { package: 'Full + Windshield', description: 'Complete glass protection', popular: false },
   ],
   coating: [
-    { package: 'Ceramic Coating', price: '$800', description: '2-year nano protection', popular: false },
-    { package: 'Full Detail + Coating', price: '$1,500', description: '5-year protection', popular: true },
-    { package: 'PPF + Coating Combo', price: '+$500', description: 'Add-on for any PPF package', popular: false },
+    { package: 'Ceramic Coating', description: '2-year nano protection', popular: false },
+    { package: 'Full Detail + Coating', description: '5-year protection', popular: true },
+    { package: 'PPF + Coating Combo', description: 'Add-on for any PPF package', popular: false },
   ],
 };
 
@@ -350,10 +350,10 @@ export default function CybertruckPage() {
       <section className="py-24 bg-gradient-to-b from-black to-gray-950">
         <div className="container-wide">
           <div className="text-center mb-16">
-            <p className="text-cyan-400 text-sm font-medium tracking-widest uppercase mb-4">Transparent Pricing</p>
-            <h2 className="text-3xl md:text-4xl font-extralight mb-4">Cybertruck Pricing</h2>
+            <p className="text-cyan-400 text-sm font-medium tracking-widest uppercase mb-4">Packages</p>
+            <h2 className="text-3xl md:text-4xl font-extralight mb-4">Cybertruck Packages</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Honest, upfront pricing for all Cybertruck services. No hidden fees. Final quotes may vary based on vehicle condition.
+              Explore our Cybertruck protection packages. Contact us for a custom quote tailored to your needs.
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -382,7 +382,9 @@ export default function CybertruckPage() {
                       </div>
                       <p className="text-xs text-gray-600 mt-0.5">{item.description}</p>
                     </div>
-                    <span className="text-cyan-400 font-medium text-sm">{item.price}</span>
+                    <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                 ))}
               </div>
@@ -412,7 +414,9 @@ export default function CybertruckPage() {
                       </div>
                       <p className="text-xs text-gray-600 mt-0.5">{item.description}</p>
                     </div>
-                    <span className="text-amber-400 font-medium text-sm">{item.price}</span>
+                    <svg className="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                 ))}
               </div>
@@ -442,7 +446,9 @@ export default function CybertruckPage() {
                       </div>
                       <p className="text-xs text-gray-600 mt-0.5">{item.description}</p>
                     </div>
-                    <span className="text-emerald-400 font-medium text-sm">{item.price}</span>
+                    <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                 ))}
               </div>

@@ -12,14 +12,12 @@ export const metadata: Metadata = {
 const packages = [
   {
     name: 'Paint Coating',
-    price: '800',
     warranty: '2-year',
     description: 'Essential ceramic protection',
     features: ['Paint decontamination', 'Single-stage polish', '2-year ceramic coating', 'Hydrophobic finish', 'UV protection'],
   },
   {
     name: 'Full Detail + Coating',
-    price: '1,500',
     warranty: '5-year',
     description: 'Complete correction and protection',
     features: ['Full paint correction', 'Swirl & scratch removal', '5-year ceramic coating', 'Wheels coated', 'Glass coating included'],
@@ -27,7 +25,6 @@ const packages = [
   },
   {
     name: 'PPF + Coating Combo',
-    price: '500',
     warranty: '2-year',
     description: 'Add-on for fresh PPF installs',
     features: ['Applied over new PPF', 'Enhanced hydrophobics', 'Easier maintenance', 'Extends PPF life', 'Added UV protection'],
@@ -230,7 +227,6 @@ export default function CoatingsPage() {
                 {pkg.addon && <span className="text-gray-500 text-xs font-medium">Add-On</span>}
                 <h3 className="text-xl font-light mt-2 mb-2">{pkg.name}</h3>
                 <p className="text-gray-500 text-sm mb-4">{pkg.description}</p>
-                <p className="text-4xl font-extralight text-emerald-400 mb-1">${pkg.price}</p>
                 <p className="text-sm text-gray-500 mb-6">{pkg.warranty} warranty</p>
                 <ul className="space-y-3 mb-8">
                   {pkg.features.map((feature) => (

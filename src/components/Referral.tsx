@@ -12,22 +12,22 @@ export default function Referral() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-extralight mb-6">
-            Give $100,{' '}
+            Refer a Friend,{' '}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Get $100
+              Both Save
             </span>
           </h2>
 
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-            Love your results? Refer a friend to FUTURE DETAIL. When they book a service of $500 or more, 
-            you both get $100 off your next service.
+            Love your results? Refer a friend to FUTURE DETAIL. When they book a qualifying service,
+            you both receive credit toward your next service.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {[
               { step: '1', title: 'Refer a Friend', description: 'Share your experience with a fellow Tesla owner' },
-              { step: '2', title: 'They Book', description: 'Your friend schedules a service ($500+ value)' },
-              { step: '3', title: 'You Both Save', description: 'You each receive $100 off your next service' },
+              { step: '2', title: 'They Book', description: 'Your friend schedules a qualifying service' },
+              { step: '3', title: 'You Both Save', description: 'You each receive credit toward your next service' },
             ].map((item) => (
               <div key={item.step} className="p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white font-medium mb-4 mx-auto">

@@ -17,20 +17,17 @@ const specs = [
 const packages = [
   {
     name: 'Front Two',
-    price: '299',
     description: 'Driver & passenger windows',
     features: ['2 front door windows', 'LLumar Ceramic IRX', 'Lifetime warranty', 'Same-day install'],
   },
   {
     name: 'Full Vehicle',
-    price: '599',
     description: 'Complete window coverage',
     features: ['All side windows', 'Rear windshield', 'LLumar Ceramic IRX', 'Lifetime warranty'],
     popular: true,
   },
   {
     name: 'Full + Windshield',
-    price: '899',
     description: 'Maximum heat rejection',
     features: ['Full vehicle tint', 'Windshield strip or full', 'LLumar AIR80 clear', 'Premium package'],
   },
@@ -45,13 +42,6 @@ const benefits = [
   { title: 'Lifetime Warranty', description: "LLumar's lifetime warranty covers bubbling, peeling, cracking, and color change for as long as you own your Tesla.", icon: '✓' },
 ];
 
-const teslaWindows = [
-  { model: 'Model 3', frontTwo: '$299', full: '$599', fullWindshield: '$899' },
-  { model: 'Model Y', frontTwo: '$299', full: '$649', fullWindshield: '$949' },
-  { model: 'Model S', frontTwo: '$349', full: '$699', fullWindshield: '$999' },
-  { model: 'Model X', frontTwo: '$349', full: '$749', fullWindshield: '$1,099' },
-  { model: 'Cybertruck', frontTwo: '$399', full: '$899', fullWindshield: '$1,299' },
-];
 
 export default function TintPage() {
   return (
@@ -75,8 +65,8 @@ export default function TintPage() {
             <Link href="/contact" className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full font-medium hover:scale-105 transition-transform">
               Book Tint Install
             </Link>
-            <a href="#pricing" className="px-8 py-4 border border-white/20 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
-              View Pricing
+            <a href="#packages" className="px-8 py-4 border border-white/20 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+              View Packages
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -201,7 +191,7 @@ export default function TintPage() {
       </section>
 
       {/* Packages */}
-      <section id="pricing" className="py-24">
+      <section id="packages" className="py-24">
         <div className="container-wide">
           <div className="text-center mb-16">
             <p className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4">Packages</p>
@@ -213,8 +203,7 @@ export default function TintPage() {
               <div key={pkg.name} className={`p-8 rounded-2xl border ${pkg.popular ? 'border-amber-500 bg-amber-500/5' : 'border-white/10'}`}>
                 {pkg.popular && <span className="text-amber-400 text-xs font-medium">Most Popular</span>}
                 <h3 className="text-xl font-light mt-2 mb-2">{pkg.name}</h3>
-                <p className="text-gray-500 text-sm mb-4">{pkg.description}</p>
-                <p className="text-4xl font-extralight text-amber-400 mb-6">${pkg.price}</p>
+                <p className="text-gray-500 text-sm mb-6">{pkg.description}</p>
                 <ul className="space-y-3 mb-8">
                   {pkg.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3 text-sm text-gray-300">
@@ -241,40 +230,6 @@ export default function TintPage() {
         </div>
       </section>
 
-      {/* Model Pricing Table */}
-      <section className="py-24 bg-gradient-to-t from-gray-950 to-black">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extralight mb-4">Pricing by Model</h2>
-            <p className="text-gray-500">LLumar Ceramic IRX pricing for each Tesla model</p>
-          </div>
-          <div className="max-w-4xl mx-auto overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-4 px-4 text-sm font-medium text-gray-500">Model</th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Front Two</th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full Vehicle</th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-gray-500">Full + Windshield</th>
-                </tr>
-              </thead>
-              <tbody>
-                {teslaWindows.map((row) => (
-                  <tr key={row.model} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                    <td className="py-4 px-4 font-light">{row.model}</td>
-                    <td className="py-4 px-4 text-center text-gray-400">{row.frontTwo}</td>
-                    <td className="py-4 px-4 text-center text-amber-400">{row.full}</td>
-                    <td className="py-4 px-4 text-center text-gray-400">{row.fullWindshield}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-center text-gray-600 text-xs mt-6">
-            * Windshield tinting uses LLumar AIR80 (80% VLT ceramic film) for legal compliance.
-          </p>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="py-24 border-t border-white/5">
