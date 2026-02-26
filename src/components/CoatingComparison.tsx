@@ -44,14 +44,14 @@ export default function CoatingComparison() {
     },
     {
       aspect: 'Cost (upfront)',
-      ceramic: '$800-$1,500',
-      wax: '$20-$50',
+      ceramic: 'One-time investment',
+      wax: 'Low per application',
       winner: 'wax',
     },
     {
       aspect: 'Cost (5-year)',
-      ceramic: '$800-$1,500',
-      wax: '$500-$1,000+',
+      ceramic: 'One-time investment',
+      wax: 'Adds up over time',
       winner: 'ceramic',
     },
   ];

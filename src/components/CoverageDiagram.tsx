@@ -5,21 +5,18 @@ import { useState } from 'react';
 const packages = {
   'full-front': {
     name: 'Full Front',
-    price: '$1,500+',
     coverage: '~30%',
     description: 'Essential protection for high-impact zones',
     areas: ['hood', 'fenders', 'bumper', 'mirrors', 'headlights'],
   },
   'track': {
     name: 'Track Package',
-    price: '$2,800+',
     coverage: '~50%',
     description: 'Enhanced coverage for spirited driving',
     areas: ['hood', 'fenders', 'bumper', 'mirrors', 'headlights', 'a-pillars', 'rockers', 'wheel-arches', 'door-edges'],
   },
   'full-body': {
     name: 'Full Body',
-    price: '$5,500+',
     coverage: '100%',
     description: 'Complete protection, inside and out',
     areas: ['hood', 'fenders', 'bumper', 'mirrors', 'headlights', 'a-pillars', 'rockers', 'wheel-arches', 'door-edges', 'roof', 'doors', 'rear', 'trunk'],
@@ -462,9 +459,6 @@ export default function CoverageDiagram() {
                   <p className="text-gray-500 text-sm">{pkg.description}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl md:text-4xl font-extralight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                    {pkg.price}
-                  </p>
                   <p className="text-sm text-gray-500 mt-1">{pkg.coverage} coverage</p>
                 </div>
               </div>

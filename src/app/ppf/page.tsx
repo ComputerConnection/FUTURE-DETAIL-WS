@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 const packages = [
   {
     name: 'Full Front',
-    price: '1,500',
     coverage: '~30%',
     installTime: '1-2 days',
     description: 'Essential protection for high-impact areas',
@@ -20,7 +19,6 @@ const packages = [
   },
   {
     name: 'Track Package',
-    price: '2,800',
     coverage: '~50%',
     installTime: '2-3 days',
     description: 'Extended coverage for enthusiast drivers',
@@ -29,7 +27,6 @@ const packages = [
   },
   {
     name: 'Full Body',
-    price: '5,500',
     coverage: '100%',
     installTime: '3-5 days',
     description: 'Complete protection for maximum peace of mind',
@@ -165,7 +162,6 @@ export default function PPFPage() {
                 {pkg.popular && <span className="text-cyan-400 text-xs font-medium">Most Popular</span>}
                 <h3 className="text-xl font-light mt-2 mb-2">{pkg.name}</h3>
                 <p className="text-gray-500 text-sm mb-4">{pkg.description}</p>
-                <p className="text-4xl font-extralight text-cyan-400 mb-2">${pkg.price}</p>
                 <div className="flex gap-4 text-sm text-gray-500 mb-6">
                   <span>{pkg.coverage} coverage</span>
                   <span>•</span>

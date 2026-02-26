@@ -13,11 +13,11 @@ const categories = [
     icon: '🏎️',
     color: 'cyan',
     products: [
-      { name: 'Ascension Front Fascia', price: '2,495', description: 'Complete front end replacement with integrated splitter' },
-      { name: 'Ascension Rear Diffuser', price: '1,295', description: 'Aggressive rear diffuser with functional aero' },
-      { name: 'Ascension Side Skirts', price: '995', description: 'Extended side skirts for lowered appearance' },
-      { name: 'Rear Spoiler', price: '695', description: 'Performance rear spoiler in carbon fiber or painted' },
-      { name: 'Front Lip Spoiler', price: '595', description: 'Subtle front lip for improved downforce' },
+      { name: 'Ascension Front Fascia', description: 'Complete front end replacement with integrated splitter' },
+      { name: 'Ascension Rear Diffuser', description: 'Aggressive rear diffuser with functional aero' },
+      { name: 'Ascension Side Skirts', description: 'Extended side skirts for lowered appearance' },
+      { name: 'Rear Spoiler', description: 'Performance rear spoiler in carbon fiber or painted' },
+      { name: 'Front Lip Spoiler', description: 'Subtle front lip for improved downforce' },
     ],
   },
   {
@@ -26,10 +26,10 @@ const categories = [
     icon: '⚡',
     color: 'purple',
     products: [
-      { name: 'UP-01 Forged Wheels (Set of 4)', price: '4,500', description: 'Lightweight forged aluminum, multiple finishes' },
-      { name: 'UP-02 Forged Wheels (Set of 4)', price: '4,800', description: 'Split 5-spoke design, flow formed' },
-      { name: 'UP-03 Forged Wheels (Set of 4)', price: '5,200', description: 'Multi-spoke performance design' },
-      { name: 'Wheel Spacers Kit', price: '295', description: 'Hub-centric spacers for aggressive stance' },
+      { name: 'UP-01 Forged Wheels (Set of 4)', description: 'Lightweight forged aluminum, multiple finishes' },
+      { name: 'UP-02 Forged Wheels (Set of 4)', description: 'Split 5-spoke design, flow formed' },
+      { name: 'UP-03 Forged Wheels (Set of 4)', description: 'Multi-spoke performance design' },
+      { name: 'Wheel Spacers Kit', description: 'Hub-centric spacers for aggressive stance' },
     ],
   },
   {
@@ -38,11 +38,11 @@ const categories = [
     icon: '🔧',
     color: 'amber',
     products: [
-      { name: 'Coilover Suspension Kit', price: '3,200', description: 'Adjustable height and damping' },
-      { name: 'Lowering Springs', price: '595', description: 'Progressive rate springs, 1" drop' },
-      { name: 'Big Brake Kit - Front', price: '4,500', description: '6-piston calipers with 2-piece rotors' },
-      { name: 'Big Brake Kit - Rear', price: '3,200', description: '4-piston calipers with 2-piece rotors' },
-      { name: 'Brake Pads - Performance', price: '295', description: 'High-temp track pads, front or rear' },
+      { name: 'Coilover Suspension Kit', description: 'Adjustable height and damping' },
+      { name: 'Lowering Springs', description: 'Progressive rate springs, 1" drop' },
+      { name: 'Big Brake Kit - Front', description: '6-piston calipers with 2-piece rotors' },
+      { name: 'Big Brake Kit - Rear', description: '4-piston calipers with 2-piece rotors' },
+      { name: 'Brake Pads - Performance', description: 'High-temp track pads, front or rear' },
     ],
   },
   {
@@ -51,11 +51,11 @@ const categories = [
     icon: '✨',
     color: 'emerald',
     products: [
-      { name: 'Carbon Fiber Mirror Caps', price: '495', description: 'Direct replacement, gloss or matte finish' },
-      { name: 'Carbon Fiber Spoiler', price: '895', description: 'Lightweight performance spoiler' },
-      { name: 'Carbon Fiber Diffuser', price: '1,495', description: 'Real carbon rear diffuser' },
-      { name: 'Carbon Fiber Interior Trim', price: '795', description: 'Dashboard and door accents' },
-      { name: 'Carbon Fiber Trunk Lid', price: '2,295', description: 'Full carbon replacement lid' },
+      { name: 'Carbon Fiber Mirror Caps', description: 'Direct replacement, gloss or matte finish' },
+      { name: 'Carbon Fiber Spoiler', description: 'Lightweight performance spoiler' },
+      { name: 'Carbon Fiber Diffuser', description: 'Real carbon rear diffuser' },
+      { name: 'Carbon Fiber Interior Trim', description: 'Dashboard and door accents' },
+      { name: 'Carbon Fiber Trunk Lid', description: 'Full carbon replacement lid' },
     ],
   },
   {
@@ -64,11 +64,11 @@ const categories = [
     icon: '🪑',
     color: 'pink',
     products: [
-      { name: 'Sport Pedal Covers', price: '195', description: 'Aluminum pedal set, bolt-on install' },
-      { name: 'Alcantara Steering Wheel', price: '895', description: 'Alcantara wrap with contrast stitching' },
-      { name: 'Carbon Fiber Steering Wheel', price: '1,495', description: 'Flat-bottom carbon fiber wheel' },
-      { name: 'Floor Mat Set', price: '295', description: 'All-weather premium floor mats' },
-      { name: 'Seat Covers - Leather', price: '1,295', description: 'Custom-fit leather seat covers' },
+      { name: 'Sport Pedal Covers', description: 'Aluminum pedal set, bolt-on install' },
+      { name: 'Alcantara Steering Wheel', description: 'Alcantara wrap with contrast stitching' },
+      { name: 'Carbon Fiber Steering Wheel', description: 'Flat-bottom carbon fiber wheel' },
+      { name: 'Floor Mat Set', description: 'All-weather premium floor mats' },
+      { name: 'Seat Covers - Leather', description: 'Custom-fit leather seat covers' },
     ],
   },
   {
@@ -77,11 +77,11 @@ const categories = [
     icon: '💡',
     color: 'blue',
     products: [
-      { name: 'LED Headlight Upgrade', price: '895', description: 'Brighter, whiter LED headlight kit' },
-      { name: 'Sequential Turn Signals', price: '395', description: 'Dynamic sequential side markers' },
-      { name: 'Puddle Lights', price: '95', description: 'Logo projection puddle lights' },
-      { name: 'Smoked Taillight Kit', price: '295', description: 'Tinted taillight covers or vinyl' },
-      { name: 'Chrome Delete Badges', price: '195', description: 'Blackout badge replacement kit' },
+      { name: 'LED Headlight Upgrade', description: 'Brighter, whiter LED headlight kit' },
+      { name: 'Sequential Turn Signals', description: 'Dynamic sequential side markers' },
+      { name: 'Puddle Lights', description: 'Logo projection puddle lights' },
+      { name: 'Smoked Taillight Kit', description: 'Tinted taillight covers or vinyl' },
+      { name: 'Chrome Delete Badges', description: 'Blackout badge replacement kit' },
     ],
   },
 ];
@@ -89,7 +89,6 @@ const categories = [
 const packages = [
   {
     name: 'Street Style Package',
-    price: '2,995',
     description: 'Entry-level styling upgrades',
     color: 'cyan',
     includes: [
@@ -102,7 +101,6 @@ const packages = [
   },
   {
     name: 'Track Ready Package',
-    price: '8,995',
     description: 'Performance-focused upgrades',
     color: 'purple',
     popular: true,
@@ -117,7 +115,6 @@ const packages = [
   },
   {
     name: 'Ultimate Package',
-    price: '18,995',
     description: 'Complete transformation',
     color: 'amber',
     includes: [
@@ -210,8 +207,7 @@ export default function AccessoriesPage() {
               >
                 {pkg.popular && <span className="text-red-400 text-xs font-medium">Most Popular</span>}
                 <h3 className="text-xl font-light mt-2 mb-2">{pkg.name}</h3>
-                <p className="text-gray-500 text-sm mb-4">{pkg.description}</p>
-                <p className="text-4xl font-extralight text-red-400 mb-6">${pkg.price}</p>
+                <p className="text-gray-500 text-sm mb-6">{pkg.description}</p>
                 <ul className="space-y-3 mb-8">
                   {pkg.includes.map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm text-gray-300">
@@ -261,9 +257,8 @@ export default function AccessoriesPage() {
                   key={product.name}
                   className="p-6 rounded-xl border border-white/10 hover:border-red-500/30 transition-colors group"
                 >
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="mb-3">
                     <h3 className="font-light group-hover:text-red-400 transition-colors">{product.name}</h3>
-                    <span className="text-red-400 font-medium">${product.price}</span>
                   </div>
                   <p className="text-sm text-gray-500 mb-4">{product.description}</p>
                   <Link 
@@ -292,7 +287,7 @@ export default function AccessoriesPage() {
               { icon: '✓', title: 'Authorized Dealer', desc: 'Genuine Unplugged Performance parts with full warranty' },
               { icon: '🔧', title: 'Expert Installation', desc: 'Professional installation by certified technicians' },
               { icon: '🛡️', title: 'Combine Services', desc: 'Add PPF, wrap, or coating during install' },
-              { icon: '💰', title: 'Package Pricing', desc: 'Save when you bundle multiple accessories' },
+              { icon: '💰', title: 'Bundle Deals', desc: 'Save when you bundle multiple accessories' },
             ].map((item) => (
               <div key={item.title} className="p-6 rounded-2xl border border-white/10 text-center">
                 <div className="text-2xl mb-3">{item.icon}</div>
