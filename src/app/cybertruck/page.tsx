@@ -455,21 +455,6 @@ export default function CybertruckPage() {
             </div>
           </div>
 
-          {/* Bundle callout */}
-          <div className="mt-12 max-w-5xl mx-auto">
-            <div className="p-8 rounded-2xl bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-cyan-500/5 border border-cyan-500/20 text-center">
-              <h3 className="text-xl font-light mb-2">Bundle &amp; Save</h3>
-              <p className="text-gray-400 text-sm mb-6 max-w-xl mx-auto">
-                Combine PPF + ceramic coating + tint for the ultimate Cybertruck protection package. Custom bundle pricing available.
-              </p>
-              <Link
-                href="/contact?service=cybertruck"
-                className="inline-flex px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-sm font-medium hover:scale-105 transition-transform"
-              >
-                Get Bundle Quote
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
