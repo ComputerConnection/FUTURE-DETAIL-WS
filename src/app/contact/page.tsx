@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
+import { trackEvent } from '@/lib/analytics';
 
 const services = [
   { id: 'ppf', label: 'Paint Protection Film', icon: '🛡️' },
@@ -13,24 +14,54 @@ const services = [
   { id: 'cybertruck', label: 'Cybertruck Services', icon: '🚀' },
 ];
 
+function getInitialServices(service: string | null): string[] {
+  if (!service) return [];
+  return services.filter((s) => service.includes(s.id)).map((s) => s.id);
+}
+
+function toTitleCase(slug: string): string {
+  return slug
+    .split(/[-\s]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Turns what the visitor picked on other pages (a color, package, or product) into lines for the lead email
+function getRequestDetails(params: URLSearchParams): string[] {
+  const details: string[] = [];
+  const service = params.get('service') ?? '';
+  const color = params.get('color');
+  const pkg = params.get('package');
+  const product = params.get('product');
+
+  // Service pages link with slugs like "ppf-full-front"
+  const match = services.find((s) => service.startsWith(`${s.id}-`));
+  if (match) details.push(`${match.label} option: ${toTitleCase(service.slice(match.id.length + 1))}`);
+  if (pkg) details.push(`Package: ${pkg}`);
+  if (product) details.push(`Product: ${product}`);
+  if (color) details.push(`Color: ${color}`);
+  if (params.get('request') === 'sample') details.push('Requesting physical color samples');
+
+  return details.map((detail) => detail.slice(0, 200));
+}
+
 function ContactForm() {
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedServices, setSelectedServices] = useState<string[]>(() =>
+    getInitialServices(searchParams.get('service'))
+  );
+  const [requestDetails] = useState<string[]>(() => getRequestDetails(new URLSearchParams(searchParams.toString())));
+  const errorRef = useRef<HTMLDivElement>(null);
 
-  // Pre-fill from URL params
-  useEffect(() => {
-    const service = searchParams.get('service');
-    if (service) {
-      if (service.includes('ppf')) setSelectedServices((prev) => [...prev, 'ppf']);
-      if (service.includes('tint')) setSelectedServices((prev) => [...prev, 'tint']);
-      if (service.includes('coating')) setSelectedServices((prev) => [...prev, 'coating']);
-      if (service.includes('accessories')) setSelectedServices((prev) => [...prev, 'accessories']);
-      if (service.includes('cybertruck')) setSelectedServices((prev) => [...prev, 'cybertruck']);
-    }
-  }, [searchParams]);
+  const showError = (message: string) => {
+    setError(message);
+    // The message sits above the form, out of view on a phone after tapping submit
+    requestAnimationFrame(() => errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  };
 
   const toggleService = (id: string) => {
     setSelectedServices((prev) =>
@@ -51,7 +82,9 @@ function ContactForm() {
       model: formData.get('model'),
       year: formData.get('year'),
       services: selectedServices.map((id) => services.find((s) => s.id === id)?.label),
+      details: requestDetails,
       message: formData.get('message'),
+      company: formData.get('company'),
     };
 
     try {
@@ -62,12 +95,24 @@ function ContactForm() {
       });
 
       if (response.ok) {
+        trackEvent('generate_lead', { services: selectedServices.join(',') || 'none' });
         setIsSuccess(true);
-      } else {
-        throw new Error('Failed to send message');
+        window.scrollTo({ top: 0 });
+        return;
       }
+
+      // Validation problems the customer can fix get the real message from the API
+      if (response.status === 400 || response.status === 429) {
+        const result = await response.json().catch(() => null);
+        if (result?.message) {
+          showError(result.message);
+          return;
+        }
+      }
+
+      showError(`Something went wrong sending your message. Please call us directly at ${siteConfig.contact.phone}.`);
     } catch {
-      setError('Something went wrong. Please call us directly at (405) 315-9202.');
+      showError(`Something went wrong sending your message. Please call us directly at ${siteConfig.contact.phone}.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -132,50 +177,49 @@ function ContactForm() {
               </div>
 
               {error && (
-                <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400">
+                <div ref={errorRef} role="alert" className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400">
                   {error}
                 </div>
               )}
 
-              {/* Quick Service Selection */}
-              <div className="mb-8">
-                <p className="text-sm text-gray-400 mb-3">Quick Select Service:</p>
-                <div className="flex flex-wrap gap-2">
-                  {services.map((service) => (
-                    <button
-                      key={service.id}
-                      type="button"
-                      onClick={() => toggleService(service.id)}
-                      className={`px-4 py-2 rounded-full text-sm flex items-center gap-2 transition-all ${
-                        selectedServices.includes(service.id)
-                          ? 'bg-cyan-500 text-black'
-                          : 'bg-white/5 text-gray-400 hover:bg-white/10'
-                      }`}
-                    >
-                      <span>{service.icon}</span>
-                      <span>{service.label}</span>
-                    </button>
-                  ))}
+              {requestDetails.length > 0 && (
+                <div className="mb-8 p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+                  <p className="text-sm text-gray-400 mb-2">We&apos;ll include this with your request:</p>
+                  <ul className="space-y-1 text-sm text-cyan-400">
+                    {requestDetails.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot: hidden from people, filled in by bots */}
+                <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input type="text" id="company" name="company" tabIndex={-1} autoComplete="off" />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Name *</label>
+                    <label htmlFor="name" className="block text-sm text-gray-400 mb-2">Name *</label>
                     <input 
                       type="text" 
+                      id="name"
                       name="name" 
+                      autoComplete="name"
                       required
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Email *</label>
+                    <label htmlFor="email" className="block text-sm text-gray-400 mb-2">Email *</label>
                     <input 
                       type="email" 
+                      id="email"
                       name="email" 
+                      autoComplete="email"
                       required
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                       placeholder="your@email.com"
@@ -184,10 +228,12 @@ function ContactForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">Phone</label>
+                  <label htmlFor="phone" className="block text-sm text-gray-400 mb-2">Phone</label>
                   <input 
                     type="tel" 
+                    id="phone"
                     name="phone"
+                    autoComplete="tel"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                     placeholder="(405) 555-0123"
                   />
@@ -195,8 +241,9 @@ function ContactForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Tesla Model</label>
+                    <label htmlFor="model" className="block text-sm text-gray-400 mb-2">Tesla Model</label>
                     <select 
+                      id="model"
                       name="model"
                       defaultValue={searchParams.get('model') || ''}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none appearance-none"
@@ -211,8 +258,9 @@ function ContactForm() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Year</label>
+                    <label htmlFor="year" className="block text-sm text-gray-400 mb-2">Year</label>
                     <select 
+                      id="year"
                       name="year"
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none appearance-none"
                     >
@@ -224,13 +272,13 @@ function ContactForm() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm text-gray-400 mb-3">Services Interested In</label>
+                <fieldset>
+                  <legend className="block text-sm text-gray-400 mb-3">Services Interested In</legend>
                   <div className="grid grid-cols-2 gap-3">
                     {services.map((service) => (
                       <label 
                         key={service.id}
-                        className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${
+                        className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-cyan-400 ${
                           selectedServices.includes(service.id)
                             ? 'border-cyan-500 bg-cyan-500/10'
                             : 'border-white/10 hover:border-cyan-500/50'
@@ -242,7 +290,7 @@ function ContactForm() {
                           value={service.label} 
                           checked={selectedServices.includes(service.id)}
                           onChange={() => toggleService(service.id)}
-                          className="hidden"
+                          className="sr-only"
                         />
                         <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
                           selectedServices.includes(service.id)
@@ -259,12 +307,14 @@ function ContactForm() {
                       </label>
                     ))}
                   </div>
-                </div>
+                </fieldset>
 
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">Message</label>
+                  <label htmlFor="message" className="block text-sm text-gray-400 mb-2">Message</label>
                   <textarea 
+                    id="message"
                     name="message"
+                    maxLength={2000}
                     rows={4}
                     defaultValue=""
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors resize-none"
@@ -298,7 +348,7 @@ function ContactForm() {
                 <div className="p-8 rounded-2xl border border-white/10 mb-8">
                   <h2 className="text-xl font-light mb-6">Contact Information</h2>
                   <div className="space-y-6">
-                    <a href="tel:+14053159202" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
+                    <a href={`tel:${siteConfig.contact.phoneRaw}`} className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
                       <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
                         <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -306,10 +356,10 @@ function ContactForm() {
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Phone</p>
-                        <p className="font-light">(405) 315-9202</p>
+                        <p className="font-light">{siteConfig.contact.phone}</p>
                       </div>
                     </a>
-                    <a href="mailto:everett@futuredetail.com" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
+                    <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
                       <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
                         <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -317,7 +367,7 @@ function ContactForm() {
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Email</p>
-                        <p className="font-light">everett@futuredetail.com</p>
+                        <p className="font-light">{siteConfig.contact.email}</p>
                       </div>
                     </a>
                     <a href="https://maps.google.com/?q=11734+Maui+Lane+Edmond+OK" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
@@ -349,13 +399,13 @@ function ContactForm() {
                     <h3 className="font-light mb-2">Prefer to Talk?</h3>
                     <p className="text-sm text-gray-500 mb-4">Call us directly for immediate assistance</p>
                     <a
-                      href="tel:+14053159202"
+                      href={`tel:${siteConfig.contact.phoneRaw}`}
                       className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:scale-105 transition-transform"
                     >
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      (405) 315-9202
+                      {siteConfig.contact.phone}
                     </a>
                   </div>
                 </div>
