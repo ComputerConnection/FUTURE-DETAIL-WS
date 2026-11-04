@@ -1,8 +1,16 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
+import Analytics from '@/components/Analytics';
 import AnimatedNavbar from '@/components/AnimatedNavbar';
 import Footer from '@/components/Footer';
 import { siteConfig } from '@/config/site';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: siteConfig.seo.title,
@@ -12,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: siteConfig.urls.production,
+    url: './',
     siteName: siteConfig.name,
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
@@ -27,7 +35,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: siteConfig.urls.production,
+    // Resolves to each page's own URL, so pages aren't marked as duplicates of the homepage
+    canonical: './',
   },
 };
 
@@ -127,25 +136,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFV41ZFS70" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-RFV41ZFS70');
-            `,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="bg-black text-white antialiased">
+        <Analytics />
         <AnimatedNavbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

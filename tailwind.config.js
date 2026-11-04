@@ -24,7 +24,7 @@ module.exports = {
         'fd-accent': '#00A2FF',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         'wide': '1440px',

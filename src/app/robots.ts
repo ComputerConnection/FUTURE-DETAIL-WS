@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://futuredetail.com';
+  const baseUrl = siteConfig.urls.production;
 
   return {
     rules: [
@@ -11,7 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/api/',
           '/thank-you',
-          '/_next/',
         ],
       },
     ],

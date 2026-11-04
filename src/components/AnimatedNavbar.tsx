@@ -182,9 +182,17 @@ export default function AnimatedNavbar() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-4 px-8 py-3 bg-white text-black rounded-full text-lg font-medium"
+            tabIndex={mobileMenuOpen ? 0 : -1}
+          >
+            Book Now
+          </Link>
           <a
             href={`tel:${siteConfig.contact.phoneRaw}`}
-            className="mt-8 text-xl text-cyan-400"
+            className="text-xl text-cyan-400"
             tabIndex={mobileMenuOpen ? 0 : -1}
           >
             {siteConfig.contact.phone}

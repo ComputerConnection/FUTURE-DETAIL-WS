@@ -16,8 +16,12 @@ export const siteConfig = {
   },
 
   urls: {
-    production: 'https://futuredetail.com',
+    production: 'https://www.futuredetail.com',
     maps: 'https://maps.google.com/?q=11734+Maui+Lane+Edmond+OK',
+  },
+
+  analytics: {
+    gaMeasurementId: 'G-RFV41ZFS70',
   },
 
   social: {
